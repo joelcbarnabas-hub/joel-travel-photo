@@ -190,6 +190,14 @@
     line-height: 1;
   }
 
+  .film-stat-frames {
+    font-size: 9px;
+    color: var(--it-green-dk);
+    letter-spacing: .06em;
+    margin-bottom: 1px;
+    min-height: 13px; /* reserve space even when empty so stats stay same height */
+  }
+
   .film-stat-label {
     font-size: 9px;
     letter-spacing: .14em;
@@ -657,15 +665,17 @@
   <div class="film-roll-icon">🎞</div>
   <div class="film-banner-text">
     <div class="film-banner-title">Ektacolor Pro 400 · Zero to Hero</div>
-    <div class="film-banner-sub">Single stock · Portra 400 emulsion · Shoot freely — you have enough rolls</div>
+    <div class="film-banner-sub" style="color:#333;">Single stock · Portra 400 emulsion<br>Shoot freely — you have enough rolls</div>
   </div>
   <div class="film-stat">
-    <div class="film-stat-val">15</div>
-    <div class="film-stat-label">Rolls</div>
+    <div class="film-stat-val" id="banner-remaining" style="color:var(--it-green)">15</div>
+    <div class="film-stat-frames" id="banner-frames">540 frames</div>
+    <div class="film-stat-label">Remaining</div>
   </div>
   <div class="film-stat">
-    <div class="film-stat-val">540</div>
-    <div class="film-stat-label">Max frames</div>
+    <div class="film-stat-val" id="banner-shot" style="color:var(--it-red)">0</div>
+    <div class="film-stat-frames" id="banner-shot-frames" style="color:var(--it-red-dk)">&nbsp;</div>
+    <div class="film-stat-label">Shot</div>
   </div>
 </div>
 
@@ -773,7 +783,6 @@
           <div class="check-box"></div>
           <div>
             <div class="check-text">MP loaded — R01 labeled</div>
-            <div class="check-note">R01 · Milan · 0606</div>
           </div>
         </div>
         <div class="check-item" onclick="toggle(this)">
@@ -804,7 +813,7 @@
           <div class="check-box"></div>
           <div>
             <div class="check-text">White gaffer tape + Sharpie</div>
-            <div class="check-note">Roll labeling: R## · City · MMDD</div>
+            <div class="check-note">Roll labeling: R## · City/City · D#-# · MMDD</div>
           </div>
         </div>
       </div>
@@ -1020,6 +1029,7 @@
     </div>
     <div class="shot-log-row">
       <div class="shot-log-label">📱 iPhone ref shots logged</div>
+    </div>
     <div class="city-footer-nav">
       <span></span>
       <a href="#top" class="back-top">↑ Top</a>
@@ -1077,6 +1087,7 @@
     </div>
     <div class="shot-log-row">
       <div class="shot-log-label">📱 iPhone ref shots logged</div>
+    </div>
     <div class="city-footer-nav">
       <a href="#milan">← Milan</a>
       <a href="#top" class="back-top">↑ Top</a>
@@ -1134,6 +1145,7 @@
     </div>
     <div class="shot-log-row">
       <div class="shot-log-label">📱 iPhone ref shots logged</div>
+    </div>
     <div class="city-footer-nav">
       <a href="#venice">← Venice</a>
       <a href="#top" class="back-top">↑ Top</a>
@@ -1209,6 +1221,7 @@
     </div>
     <div class="shot-log-row">
       <div class="shot-log-label">📱 iPhone ref shots logged</div>
+    </div>
     <div class="city-footer-nav">
       <a href="#florence">← Florence</a>
       <a href="#top" class="back-top">↑ Top</a>
@@ -1266,6 +1279,7 @@
     </div>
     <div class="shot-log-row">
       <div class="shot-log-label">📱 iPhone ref shots logged</div>
+    </div>
     <div class="city-footer-nav">
       <a href="#rome">← Rome</a>
       <a href="#top" class="back-top">↑ Top</a>
@@ -1305,6 +1319,7 @@
     </div>
     <div class="shot-log-row">
       <div class="shot-log-label">📱 iPhone ref shots logged</div>
+    </div>
     <div class="city-footer-nav">
       <a href="#salerno">← Salerno</a>
       <a href="#top" class="back-top">↑ Top</a>
@@ -1318,27 +1333,13 @@
   <div class="card">
     <div class="card-title">
       <div class="dot" style="background:var(--black)"></div>
-      15 Rolls · Ektacolor Pro 400
+      <span id="tracker-title">15 Rolls · Ektacolor Pro 400</span>
     </div>
-    <div class="roll-tracker">
-      <div class="roll-pill loaded"><div class="roll-pip"></div>R01 · Milan · 0606</div>
-      <div class="roll-pill"><div class="roll-pip"></div>R02</div>
-      <div class="roll-pill"><div class="roll-pip"></div>R03</div>
-      <div class="roll-pill"><div class="roll-pip"></div>R04</div>
-      <div class="roll-pill"><div class="roll-pip"></div>R05</div>
-      <div class="roll-pill"><div class="roll-pip"></div>R06</div>
-      <div class="roll-pill"><div class="roll-pip"></div>R07</div>
-      <div class="roll-pill"><div class="roll-pip"></div>R08</div>
-      <div class="roll-pill"><div class="roll-pip"></div>R09</div>
-      <div class="roll-pill"><div class="roll-pip"></div>R10</div>
-      <div class="roll-pill"><div class="roll-pip"></div>R11</div>
-      <div class="roll-pill"><div class="roll-pip"></div>R12</div>
-      <div class="roll-pill"><div class="roll-pip"></div>R13</div>
-      <div class="roll-pill"><div class="roll-pip"></div>R14</div>
-      <div class="roll-pill"><div class="roll-pip"></div>R15</div>
+    <div class="roll-tracker" id="roll-tracker">
+      <!-- rolls rendered by JS -->
     </div>
     <div style="margin-top:.9rem;font-size:11px;color:var(--gray-mid);font-style:italic;">
-      Update roll labels nightly on MacBook. Shot = green · Loaded = amber · Unshot = default
+      Tap to cycle: Unshot → Loaded → Shot. State saved in browser.
     </div>
   </div>
 
@@ -1366,13 +1367,89 @@
 </footer>
 
 <script>
+  // ── CHECKLIST ──
   function toggle(item) {
     const box = item.querySelector('.check-box');
-    const text = item.querySelector('.check-text');
     if (!box) return;
     const isChecked = box.classList.toggle('checked');
     item.classList.toggle('done', isChecked);
   }
+
+  // ── ROLL TRACKER ──
+  const TOTAL = 15;
+  const STATES = ['unshot', 'loaded', 'shot'];
+  const STORAGE_KEY = 'italy26_rolls';
+
+  // Default roll data
+  function defaultRolls() {
+    return Array.from({ length: TOTAL }, (_, i) => ({
+      id: i + 1,
+      state: 'unshot',
+      label: ''   // label only set when shot
+    }));
+  }
+
+  function loadRolls() {
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved) return JSON.parse(saved);
+    } catch(e) {}
+    return defaultRolls();
+  }
+
+  function saveRolls(rolls) {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(rolls)); } catch(e) {}
+  }
+
+  function rollLabel(roll) {
+    const num = String(roll.id).padStart(2, '0');
+    if (roll.state === 'shot' && roll.label) return `R${num} · ${roll.label}`;
+    return `R${num}`;
+  }
+
+  function updateBanner(rolls) {
+    const shot = rolls.filter(r => r.state === 'shot').length;
+    const remaining = TOTAL - shot;
+    const framesRemaining = remaining * 36;
+    const framesShot = shot * 36;
+    document.getElementById('banner-remaining').textContent = remaining;
+    document.getElementById('banner-frames').textContent = framesRemaining + ' frames';
+    document.getElementById('banner-shot').textContent = shot;
+    document.getElementById('banner-shot-frames').textContent = shot > 0 ? framesShot + ' frames' : '\u00a0';
+    document.getElementById('tracker-title').textContent =
+      `${remaining} Remaining · ${shot} Shot · Ektacolor Pro 400`;
+  }
+
+  function renderRolls(rolls) {
+    const container = document.getElementById('roll-tracker');
+    container.innerHTML = '';
+    rolls.forEach((roll, idx) => {
+      const pill = document.createElement('div');
+      pill.className = 'roll-pill' + (roll.state !== 'unshot' ? ' ' + roll.state : '');
+      pill.innerHTML = `<div class="roll-pip"></div>${rollLabel(roll)}`;
+      pill.style.cursor = 'pointer';
+      pill.addEventListener('click', () => {
+        const currentIdx = STATES.indexOf(roll.state);
+        const nextState = STATES[(currentIdx + 1) % STATES.length];
+
+        // If cycling back to unshot, clear label
+        if (nextState === 'unshot') {
+          roll.label = '';
+        }
+
+        roll.state = nextState;
+        saveRolls(rolls);
+        renderRolls(rolls);
+        updateBanner(rolls);
+      });
+      container.appendChild(pill);
+    });
+  }
+
+  // Init
+  const rolls = loadRolls();
+  renderRolls(rolls);
+  updateBanner(rolls);
 </script>
 
 </body>
