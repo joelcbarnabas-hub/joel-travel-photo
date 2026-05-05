@@ -67,14 +67,15 @@
     font-weight: 500;
     letter-spacing: .22em;
     text-transform: uppercase;
-    color: var(--gray-mid);
+    color: #777;
     margin-bottom: .5rem;
   }
 
   .header-title {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(3rem, 10vw, 5.5rem);
-    line-height: .95;
+    font-size: clamp(2.4rem, 8vw, 4.8rem);
+    line-height: 1;
+    white-space: nowrap;
     color: var(--black);
     letter-spacing: .02em;
   }
@@ -90,17 +91,23 @@
 
   .header-sub {
     margin-top: .8rem;
-    font-size: 11px;
-    color: var(--gray-mid);
-    letter-spacing: .06em;
+    font-size: 11.5px;
+    color: #444;
+    letter-spacing: .04em;
     display: flex;
     flex-direction: column;
-    gap: .3rem;
+    gap: .35rem;
+    line-height: 1.5;
   }
 
-  .header-sub span {
-    display: block;
+  .header-sub span { display: block; }
+  .header-sub a {
+    color: var(--it-green-dk);
+    text-decoration: none;
+    font-weight: 500;
+    border-bottom: 1px solid rgba(0,107,51,.3);
   }
+  .header-sub a:hover { color: var(--it-green); }
 
   /* ── FLAG STRIPE ── */
   .flag-stripe { display:flex; height:4px; }
@@ -109,59 +116,95 @@
   .flag-stripe span:nth-child(2) { background:var(--white); border-top:1px solid var(--gray-light); border-bottom:1px solid var(--gray-light); }
   .flag-stripe span:nth-child(3) { background:var(--it-red); }
 
-  /* ── KIT STRIP ── */
-  .kit-strip {
+  /* ── KIT SECTION ── */
+  .kit-section {
     background: var(--black);
-    padding: .9rem 1.2rem;
-    display: flex;
-    gap: 1rem;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    align-items: center;
-    white-space: nowrap;
+    padding: 1.2rem 1.8rem 1.4rem;
   }
-
-  .kit-strip::-webkit-scrollbar { display: none; }
-
-  .kit-item { white-space: nowrap; }
-
-  .kit-label {
+  .kit-section-label {
     font-size: 8px;
-    letter-spacing: .2em;
+    letter-spacing: .22em;
     text-transform: uppercase;
     color: rgba(255,255,255,.3);
-    flex-shrink: 0;
-    padding-right: .8rem;
-    border-right: 1px solid rgba(255,255,255,.1);
+    margin-bottom: .8rem;
   }
-
-  .kit-item {
-    display: flex;
-    flex-direction: column;
-    flex-shrink: 0;
-    gap: 2px;
+  .kit-grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: .45rem;
+    margin-bottom: .7rem;
   }
-
-  .kit-item-name {
+  .kit-cell {
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.09);
+    border-radius: 5px;
+    padding: .6rem .75rem;
+  }
+  .kit-cell-name {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 15px;
+    font-size: 14px;
     color: var(--white);
     letter-spacing: .04em;
     line-height: 1;
+    margin-bottom: 3px;
+  }
+  .kit-cell-role {
+    font-size: 9.5px;
+    color: rgba(255,255,255,.6);
+    letter-spacing: .04em;
+    line-height: 1.4;
+  }
+  .kit-lens-row {
+    display: flex;
+    gap: .4rem;
+    flex-wrap: wrap;
+  }
+  .kit-lens-pill {
+    background: rgba(255,255,255,.07);
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 20px;
+    padding: 3px 10px;
+    font-size: 10px;
+    color: rgba(255,255,255,.65);
+    letter-spacing: .03em;
+  }
+  .kit-lens-pill.primary {
+    background: rgba(0,146,70,.18);
+    border-color: rgba(0,146,70,.4);
+    color: #7dd4a8;
   }
 
-  .kit-item-role {
-    font-size: 9px;
-    color: rgba(255,255,255,.35);
-    letter-spacing: .08em;
+  /* ── STICKY CITY NAV ── */
+  .city-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(17,17,17,.97);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(255,255,255,.08);
+    padding: 0 1rem;
+    display: flex;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .city-nav::-webkit-scrollbar { display: none; }
+  .city-nav a {
+    display: block;
+    padding: .65rem .8rem;
+    font-size: 9.5px;
+    font-weight: 500;
+    letter-spacing: .1em;
     text-transform: uppercase;
-  }
-
-  .kit-divider {
-    width: 1px;
-    height: 28px;
-    background: rgba(255,255,255,.08);
+    color: rgba(255,255,255,.4);
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
     flex-shrink: 0;
+    transition: color .15s, border-color .15s;
+  }
+  .city-nav a:hover {
+    color: var(--white);
+    border-bottom-color: var(--it-green);
   }
 
   .film-banner {
@@ -329,7 +372,7 @@
 
   .check-note {
     font-size: 11px;
-    color: var(--gray-mid);
+    color: #555;
     font-style: italic;
     margin-top: 2px;
     border-left: 2px solid var(--gray-light);
@@ -440,7 +483,7 @@
 
   .tip-note {
     font-size: 11px;
-    color: #999;
+    color: #555;
     font-style: italic;
     border-left: 2px solid var(--gray-light);
     padding-left: 7px;
@@ -476,7 +519,7 @@
 
   .shot-log-label {
     font-size: 10px;
-    color: var(--gray-mid);
+    color: #555;
     letter-spacing: .1em;
     text-transform: uppercase;
     display: flex;
@@ -618,7 +661,7 @@
       </div>
       <div class="header-sub">
         <span>Jun 5 – 18 &nbsp;·&nbsp; 13 days</span>
-        <span>Milan · Venice · Florence · Rome · Salerno · Naples</span>
+        <span><a href="#milan">Milan</a> · <a href="#venice">Venice</a> · <a href="#florence">Florence</a> · <a href="#rome">Rome</a> · <a href="#salerno">Salerno</a> · <a href="#naples">Naples</a></span>
         <span>15 rolls · Ektacolor Pro 400 · Single stock</span>
       </div>
     </div>
@@ -628,40 +671,39 @@
 
 <div class="flag-stripe"><span></span><span></span><span></span></div>
 
-<!-- ── KIT STRIP ── -->
-<div class="kit-strip">
-  <div class="kit-label">Kit</div>
-
-  <div class="kit-item">
-    <div class="kit-item-name">Leica MP</div>
-    <div class="kit-item-role">Film · Primary Day</div>
+<!-- ── KIT SECTION ── -->
+<div class="kit-section">
+  <div class="kit-section-label">Kit · Italy 2026</div>
+  <div class="kit-grid">
+    <div class="kit-cell">
+      <div class="kit-cell-name">Leica MP</div>
+      <div class="kit-cell-role">Film · Primary day</div>
+    </div>
+    <div class="kit-cell">
+      <div class="kit-cell-name">M11P</div>
+      <div class="kit-cell-role">Digital · Night / backup</div>
+    </div>
+    <div class="kit-cell">
+      <div class="kit-cell-name">X100VI</div>
+      <div class="kit-cell-role">Events · One-hand</div>
+    </div>
   </div>
-  <div class="kit-divider"></div>
-  <div class="kit-item">
-    <div class="kit-item-name">M11P</div>
-    <div class="kit-item-role">Digital · Night / Backup</div>
-  </div>
-  <div class="kit-divider"></div>
-  <div class="kit-item">
-    <div class="kit-item-name">X100VI</div>
-    <div class="kit-item-role">Events / One-hand</div>
-  </div>
-  <div class="kit-divider"></div>
-  <div class="kit-item">
-    <div class="kit-item-name">28mm</div>
-    <div class="kit-item-role">Primary lens</div>
-  </div>
-  <div class="kit-divider"></div>
-  <div class="kit-item">
-    <div class="kit-item-name">35mm</div>
-    <div class="kit-item-role">Secondary</div>
-  </div>
-  <div class="kit-divider"></div>
-  <div class="kit-item">
-    <div class="kit-item-name">50mm</div>
-    <div class="kit-item-role">Portraits / Compression</div>
+  <div class="kit-lens-row">
+    <div class="kit-lens-pill primary">28mm · Primary</div>
+    <div class="kit-lens-pill">35mm</div>
+    <div class="kit-lens-pill">50mm</div>
   </div>
 </div>
+
+<!-- ── STICKY CITY NAV ── -->
+<nav class="city-nav">
+  <a href="#milan">Milan</a>
+  <a href="#venice">Venice</a>
+  <a href="#florence">Florence</a>
+  <a href="#rome">Rome</a>
+  <a href="#salerno">Salerno</a>
+  <a href="#naples">Naples</a>
+</nav>
 
 <!-- ── FILM BANNER ── -->
 <div class="film-banner">
@@ -982,7 +1024,7 @@
   </div>
 
   <!-- MILAN -->
-  <div class="city-block">
+  <div class="city-block" id="milan">
     <div class="city-head">
       <div>
         <div class="city-name">Milan</div>
@@ -1036,7 +1078,7 @@
   </div>
 
   <!-- VENICE -->
-  <div class="city-block">
+  <div class="city-block" id="venice">
     <div class="city-head">
       <div>
         <div class="city-name">Venice</div>
@@ -1090,7 +1132,7 @@
   </div>
 
   <!-- FLORENCE -->
-  <div class="city-block">
+  <div class="city-block" id="florence">
     <div class="city-head">
       <div>
         <div class="city-name">Florence</div>
@@ -1144,7 +1186,7 @@
   </div>
 
   <!-- ROME -->
-  <div class="city-block">
+  <div class="city-block" id="rome">
     <div class="city-head">
       <div>
         <div class="city-name">Rome</div>
@@ -1216,7 +1258,7 @@
   </div>
 
   <!-- SALERNO / AMALFI -->
-  <div class="city-block">
+  <div class="city-block" id="salerno">
     <div class="city-head">
       <div>
         <div class="city-name">Salerno · Amalfi</div>
@@ -1270,7 +1312,7 @@
   </div>
 
   <!-- NAPLES -->
-  <div class="city-block">
+  <div class="city-block" id="naples">
     <div class="city-head">
       <div>
         <div class="city-name">Naples</div>
