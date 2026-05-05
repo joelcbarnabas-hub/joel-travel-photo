@@ -92,16 +92,14 @@
     margin-top: .8rem;
     font-size: 11px;
     color: var(--gray-mid);
-    letter-spacing: .08em;
+    letter-spacing: .06em;
     display: flex;
-    gap: 1.2rem;
-    flex-wrap: wrap;
+    flex-direction: column;
+    gap: .3rem;
   }
 
   .header-sub span {
-    display: flex;
-    align-items: center;
-    gap: 5px;
+    display: block;
   }
 
   /* ── FLAG STRIPE ── */
@@ -114,15 +112,18 @@
   /* ── KIT STRIP ── */
   .kit-strip {
     background: var(--black);
-    padding: 1rem 1.8rem;
+    padding: .9rem 1.2rem;
     display: flex;
-    gap: 1.4rem;
+    gap: 1rem;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     align-items: center;
+    white-space: nowrap;
   }
 
   .kit-strip::-webkit-scrollbar { display: none; }
+
+  .kit-item { white-space: nowrap; }
 
   .kit-label {
     font-size: 8px;
@@ -163,38 +164,31 @@
     flex-shrink: 0;
   }
 
-  /* ── FILM CARD ── */
   .film-banner {
     background: var(--parchment);
     border-bottom: 1px solid var(--gray-light);
-    padding: 1rem 1.8rem;
+    padding: 1rem 1.5rem;
     display: flex;
     align-items: center;
-    gap: 1.4rem;
-    flex-wrap: wrap;
+    gap: 1rem;
+    flex-wrap: nowrap;
   }
 
-  .film-roll-icon {
-    font-size: 1.4rem;
-    flex-shrink: 0;
-  }
-
-  .film-banner-text {
-    flex: 1;
-  }
+  .film-banner-text { flex: 1; min-width: 0; }
 
   .film-banner-title {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.1rem;
-    letter-spacing: .06em;
+    font-size: 1rem;
+    letter-spacing: .04em;
     color: var(--black);
-    line-height: 1;
+    line-height: 1.2;
     margin-bottom: 2px;
   }
 
   .film-banner-sub {
-    font-size: 11px;
+    font-size: 10px;
     color: var(--gray);
+    line-height: 1.4;
   }
 
   .film-stat {
@@ -623,9 +617,9 @@
         <span>Italia</span><br><em>2026</em>
       </div>
       <div class="header-sub">
-        <span>📅 Jun 5 – 18</span>
-        <span>🏙 Milan · Venice · Florence · Rome · Salerno · Naples</span>
-        <span>🎞 15 rolls · Ektacolor Pro 400</span>
+        <span>Jun 5 – 18 &nbsp;·&nbsp; 13 days</span>
+        <span>Milan · Venice · Florence · Rome · Salerno · Naples</span>
+        <span>15 rolls · Ektacolor Pro 400 · Single stock</span>
       </div>
     </div>
     <div class="leica-dot"></div>
