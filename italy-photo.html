@@ -1,0 +1,1378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<title>Italy 2026 · Through the Lens</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red:          #E2001A;
+    --it-green:     #009246;
+    --it-green-dk:  #006B33;
+    --it-green-lt:  #E8F5EE;
+    --it-red:       #CE2B37;
+    --it-red-dk:    #A01E28;
+    --it-red-lt:    #FCECED;
+    --off-white:    #F7F5F2;
+    --parchment:    #EEECe7;
+    --black:        #111111;
+    --gray:         #555555;
+    --gray-light:   #DDDDDD;
+    --gray-mid:     #999999;
+    --white:        #FFFFFF;
+    --amber:        #B8860B;
+    --amber-lt:     #FDF8E8;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    background: var(--off-white);
+    color: var(--black);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.65;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: var(--off-white);
+    border-bottom: 1px solid var(--gray-light);
+    padding: 2.8rem 1.8rem 2rem;
+    position: relative;
+  }
+
+  .header-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 1.2rem;
+  }
+
+  .leica-dot {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: var(--red);
+    flex-shrink: 0;
+    margin-top: 6px;
+  }
+
+  .header-eyebrow {
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    color: var(--gray-mid);
+    margin-bottom: .5rem;
+  }
+
+  .header-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3rem, 10vw, 5.5rem);
+    line-height: .95;
+    color: var(--black);
+    letter-spacing: .02em;
+  }
+
+  .header-title span {
+    color: var(--it-green);
+  }
+
+  .header-title em {
+    color: var(--it-red);
+    font-style: normal;
+  }
+
+  .header-sub {
+    margin-top: .8rem;
+    font-size: 11px;
+    color: var(--gray-mid);
+    letter-spacing: .08em;
+    display: flex;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+  }
+
+  .header-sub span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  /* ── FLAG STRIPE ── */
+  .flag-stripe { display:flex; height:4px; }
+  .flag-stripe span { flex:1; }
+  .flag-stripe span:nth-child(1) { background:var(--it-green); }
+  .flag-stripe span:nth-child(2) { background:var(--white); border-top:1px solid var(--gray-light); border-bottom:1px solid var(--gray-light); }
+  .flag-stripe span:nth-child(3) { background:var(--it-red); }
+
+  /* ── KIT STRIP ── */
+  .kit-strip {
+    background: var(--black);
+    padding: 1rem 1.8rem;
+    display: flex;
+    gap: 1.4rem;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    align-items: center;
+  }
+
+  .kit-strip::-webkit-scrollbar { display: none; }
+
+  .kit-label {
+    font-size: 8px;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,.3);
+    flex-shrink: 0;
+    padding-right: .8rem;
+    border-right: 1px solid rgba(255,255,255,.1);
+  }
+
+  .kit-item {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    gap: 2px;
+  }
+
+  .kit-item-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 15px;
+    color: var(--white);
+    letter-spacing: .04em;
+    line-height: 1;
+  }
+
+  .kit-item-role {
+    font-size: 9px;
+    color: rgba(255,255,255,.35);
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  .kit-divider {
+    width: 1px;
+    height: 28px;
+    background: rgba(255,255,255,.08);
+    flex-shrink: 0;
+  }
+
+  /* ── FILM CARD ── */
+  .film-banner {
+    background: var(--parchment);
+    border-bottom: 1px solid var(--gray-light);
+    padding: 1rem 1.8rem;
+    display: flex;
+    align-items: center;
+    gap: 1.4rem;
+    flex-wrap: wrap;
+  }
+
+  .film-roll-icon {
+    font-size: 1.4rem;
+    flex-shrink: 0;
+  }
+
+  .film-banner-text {
+    flex: 1;
+  }
+
+  .film-banner-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: .06em;
+    color: var(--black);
+    line-height: 1;
+    margin-bottom: 2px;
+  }
+
+  .film-banner-sub {
+    font-size: 11px;
+    color: var(--gray);
+  }
+
+  .film-stat {
+    text-align: center;
+    flex-shrink: 0;
+  }
+
+  .film-stat-val {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    color: var(--it-red);
+    line-height: 1;
+  }
+
+  .film-stat-label {
+    font-size: 9px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--gray-mid);
+  }
+
+  /* ── MAIN ── */
+  main { max-width: 780px; margin: 0 auto; padding: 2rem 1.5rem 5rem; }
+
+  /* ── SECTION LABEL ── */
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 2.2rem 0 .8rem;
+  }
+
+  .section-label::before {
+    content: '';
+    width: 3px;
+    height: 16px;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+
+  .section-label.green::before { background: var(--it-green); }
+  .section-label.red::before   { background: var(--it-red); }
+  .section-label.black::before { background: var(--black); }
+  .section-label.amber::before { background: var(--amber); }
+
+  .section-label span {
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--black);
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--gray-light);
+  }
+
+  /* ── CARDS ── */
+  .card {
+    background: var(--white);
+    border: 1px solid var(--gray-light);
+    border-radius: 8px;
+    padding: 1.3rem 1.5rem;
+    margin-bottom: .7rem;
+  }
+
+  .card-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.15rem;
+    letter-spacing: .04em;
+    color: var(--black);
+    margin-bottom: .7rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .card-title .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* ── CHECKLIST ── */
+  .checklist {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--gray);
+    padding: 5px 0;
+    border-bottom: 1px solid var(--parchment);
+    line-height: 1.5;
+  }
+
+  .check-item:last-child { border-bottom: none; }
+
+  .check-box {
+    width: 16px;
+    height: 16px;
+    border: 1.5px solid var(--gray-light);
+    border-radius: 3px;
+    flex-shrink: 0;
+    margin-top: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all .15s;
+  }
+
+  .check-box.checked {
+    background: var(--it-green);
+    border-color: var(--it-green);
+  }
+
+  .check-box.checked::after {
+    content: '✓';
+    color: white;
+    font-size: 10px;
+    font-weight: 500;
+  }
+
+  .check-item.done .check-text {
+    text-decoration: line-through;
+    color: var(--gray-light);
+  }
+
+  .check-note {
+    font-size: 11px;
+    color: var(--gray-mid);
+    font-style: italic;
+    margin-top: 2px;
+    border-left: 2px solid var(--gray-light);
+    padding-left: 7px;
+  }
+
+  .check-decided-no {
+    font-size: 11px;
+    color: var(--it-red);
+    font-weight: 500;
+    margin-left: 4px;
+  }
+
+  /* ── GEAR GRID ── */
+  .gear-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: .5rem;
+  }
+
+  .gear-item {
+    background: var(--off-white);
+    border: 1px solid var(--gray-light);
+    border-radius: 6px;
+    padding: .8rem 1rem;
+  }
+
+  .gear-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1rem;
+    letter-spacing: .04em;
+    color: var(--black);
+    line-height: 1;
+    margin-bottom: 2px;
+  }
+
+  .gear-role {
+    font-size: 10px;
+    color: var(--gray-mid);
+    letter-spacing: .06em;
+  }
+
+  .gear-note {
+    font-size: 11px;
+    color: var(--gray);
+    margin-top: 5px;
+    font-style: italic;
+  }
+
+  /* ── CITY PHOTO SECTION ── */
+  .city-block {
+    background: var(--white);
+    border: 1px solid var(--gray-light);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: .7rem;
+  }
+
+  .city-head {
+    padding: 1rem 1.3rem .8rem;
+    border-bottom: 1px solid var(--parchment);
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .city-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    letter-spacing: .04em;
+    color: var(--black);
+    line-height: 1;
+  }
+
+  .city-dates {
+    font-size: 10px;
+    color: var(--gray-mid);
+    letter-spacing: .08em;
+  }
+
+  .city-body {
+    padding: 1rem 1.3rem;
+    display: flex;
+    flex-direction: column;
+    gap: .6rem;
+  }
+
+  .photo-tip {
+    display: flex;
+    gap: 9px;
+    align-items: flex-start;
+    font-size: 12.5px;
+    color: var(--gray);
+    line-height: 1.55;
+  }
+
+  .tip-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    margin-top: 6px;
+    flex-shrink: 0;
+  }
+
+  .tip-inner { flex: 1; }
+
+  .tip-note {
+    font-size: 11px;
+    color: #999;
+    font-style: italic;
+    border-left: 2px solid var(--gray-light);
+    padding-left: 7px;
+    margin-top: 3px;
+    line-height: 1.5;
+  }
+
+  .light-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 10px;
+    font-weight: 500;
+    padding: 2px 8px;
+    border-radius: 3px;
+    margin-top: 4px;
+    letter-spacing: .04em;
+  }
+
+  .light-tag.golden { background: var(--amber-lt); color: var(--amber); border: 1px solid #e6c97a; }
+  .light-tag.harsh  { background: var(--it-red-lt); color: var(--it-red-dk); border: 1px solid #f0b8bc; }
+  .light-tag.soft   { background: var(--it-green-lt); color: var(--it-green-dk); border: 1px solid #9fd4b8; }
+
+  /* ── SHOT LOG ── */
+  .shot-log-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: .65rem 1.3rem;
+    border-top: 1px solid var(--parchment);
+    background: var(--off-white);
+  }
+
+  .shot-log-label {
+    font-size: 10px;
+    color: var(--gray-mid);
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .shot-log-count {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1rem;
+    color: var(--it-green);
+    letter-spacing: .04em;
+  }
+
+  .shot-log-count.zero { color: var(--gray-light); }
+
+  /* ── ROLL TRACKER ── */
+  .roll-tracker {
+    display: flex;
+    gap: .5rem;
+    flex-wrap: wrap;
+    margin-top: .3rem;
+  }
+
+  .roll-pill {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--off-white);
+    border: 1px solid var(--gray-light);
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-size: 11px;
+    color: var(--gray);
+  }
+
+  .roll-pill.shot {
+    background: var(--it-green-lt);
+    border-color: #9fd4b8;
+    color: var(--it-green-dk);
+  }
+
+  .roll-pill.loaded {
+    background: var(--amber-lt);
+    border-color: #e6c97a;
+    color: var(--amber);
+  }
+
+  .roll-pip {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+    flex-shrink: 0;
+  }
+
+  /* ── TIP BOX ── */
+  .tip-box {
+    background: var(--amber-lt);
+    border-left: 3px solid var(--amber);
+    border-radius: 0 6px 6px 0;
+    padding: .85rem 1.1rem;
+    margin-bottom: .7rem;
+    font-size: 12px;
+    color: #555;
+    line-height: 1.7;
+  }
+
+  .tip-box strong { color: var(--amber); font-weight: 500; }
+
+  /* ── CONNECTIVITY ── */
+  .connect-row {
+    display: flex;
+    gap: .5rem;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    margin-bottom: .3rem;
+  }
+
+  .connect-label {
+    font-size: 10px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--gray-mid);
+    min-width: 80px;
+    padding-top: 2px;
+  }
+
+  .connect-val {
+    font-size: 12.5px;
+    color: var(--black);
+    flex: 1;
+  }
+
+  /* ── TWO COL ── */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: .6rem;
+  }
+
+  @media(max-width: 480px) {
+    .two-col { grid-template-columns: 1fr; }
+    header { padding: 2rem 1.2rem 1.5rem; }
+    main { padding: 1.5rem 1rem 4rem; }
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center;
+    padding: 1.5rem 2rem;
+    font-size: 10px;
+    color: var(--gray-mid);
+    letter-spacing: .08em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  footer .leica-dot-sm {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--red);
+    flex-shrink: 0;
+  }
+</style>
+</head>
+<body>
+
+<!-- ── HEADER ── -->
+<header>
+  <div class="header-top">
+    <div>
+      <div class="header-eyebrow">Joel Barnabas · Travel Photography</div>
+      <div class="header-title">
+        <span>Italia</span><br><em>2026</em>
+      </div>
+      <div class="header-sub">
+        <span>📅 Jun 5 – 18</span>
+        <span>🏙 Milan · Venice · Florence · Rome · Salerno · Naples</span>
+        <span>🎞 15 rolls · Ektacolor Pro 400</span>
+      </div>
+    </div>
+    <div class="leica-dot"></div>
+  </div>
+</header>
+
+<div class="flag-stripe"><span></span><span></span><span></span></div>
+
+<!-- ── KIT STRIP ── -->
+<div class="kit-strip">
+  <div class="kit-label">Kit</div>
+
+  <div class="kit-item">
+    <div class="kit-item-name">Leica MP</div>
+    <div class="kit-item-role">Film · Primary Day</div>
+  </div>
+  <div class="kit-divider"></div>
+  <div class="kit-item">
+    <div class="kit-item-name">M11P</div>
+    <div class="kit-item-role">Digital · Night / Backup</div>
+  </div>
+  <div class="kit-divider"></div>
+  <div class="kit-item">
+    <div class="kit-item-name">X100VI</div>
+    <div class="kit-item-role">Events / One-hand</div>
+  </div>
+  <div class="kit-divider"></div>
+  <div class="kit-item">
+    <div class="kit-item-name">28mm</div>
+    <div class="kit-item-role">Primary lens</div>
+  </div>
+  <div class="kit-divider"></div>
+  <div class="kit-item">
+    <div class="kit-item-name">35mm</div>
+    <div class="kit-item-role">Secondary</div>
+  </div>
+  <div class="kit-divider"></div>
+  <div class="kit-item">
+    <div class="kit-item-name">50mm</div>
+    <div class="kit-item-role">Portraits / Compression</div>
+  </div>
+</div>
+
+<!-- ── FILM BANNER ── -->
+<div class="film-banner">
+  <div class="film-roll-icon">🎞</div>
+  <div class="film-banner-text">
+    <div class="film-banner-title">Ektacolor Pro 400 · Zero to Hero</div>
+    <div class="film-banner-sub">Single stock · Portra 400 emulsion · Shoot freely — you have enough rolls</div>
+  </div>
+  <div class="film-stat">
+    <div class="film-stat-val">15</div>
+    <div class="film-stat-label">Rolls</div>
+  </div>
+  <div class="film-stat">
+    <div class="film-stat-val">540</div>
+    <div class="film-stat-label">Max frames</div>
+  </div>
+</div>
+
+<main>
+
+  <!-- ── GEAR & KIT ── -->
+  <div class="section-label green"><span>Gear Decisions</span></div>
+
+  <div class="card">
+    <div class="card-title">
+      <div class="dot" style="background:var(--it-green)"></div>
+      Camera Kit — Confirmed
+    </div>
+    <div class="gear-grid">
+      <div class="gear-item">
+        <div class="gear-name">Leica MP (Silver)</div>
+        <div class="gear-role">Film body · Day primary</div>
+        <div class="gear-note">28mm mounted. MP carries the creative load.</div>
+      </div>
+      <div class="gear-item">
+        <div class="gear-name">Leica M11P</div>
+        <div class="gear-role">Digital · Night / overcast</div>
+        <div class="gear-note">Takes over after dark. Dynamic range + low light.</div>
+      </div>
+      <div class="gear-item">
+        <div class="gear-name">Fuji X100VI</div>
+        <div class="gear-role">One-hand / events</div>
+        <div class="gear-note">Autofocus when needed. Leica-risk situations.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">
+      <div class="dot" style="background:var(--it-green)"></div>
+      Lenses — Confirmed
+    </div>
+    <div class="gear-grid">
+      <div class="gear-item">
+        <div class="gear-name">28mm Simera</div>
+        <div class="gear-role">Primary — always on</div>
+        <div class="gear-note">Family of 4. No stepping back at dinner.</div>
+      </div>
+      <div class="gear-item">
+        <div class="gear-name">35mm Simera</div>
+        <div class="gear-role">Secondary</div>
+        <div class="gear-note">Streets. A little more compression than 28.</div>
+      </div>
+      <div class="gear-item">
+        <div class="gear-name">50mm Simera</div>
+        <div class="gear-role">Portraits / compression</div>
+        <div class="gear-note">Reach for this at dinner tables and slower moments.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">
+      <div class="dot" style="background:var(--it-red)"></div>
+      Not Bringing
+    </div>
+    <div class="checklist">
+      <div class="check-item">
+        <div class="check-text" style="color:var(--gray-mid)">HP5 / B&W film <span class="check-decided-no">No</span></div>
+      </div>
+      <div class="check-item">
+        <div class="check-text" style="color:var(--gray-mid)">Drone <span class="check-decided-no">No</span></div>
+      </div>
+      <div class="check-item">
+        <div class="check-text" style="color:var(--gray-mid)">Instax printer <span class="check-decided-no">No</span></div>
+      </div>
+      <div class="check-item">
+        <div class="check-text" style="color:var(--gray-mid)">XE4 bodies <span class="check-decided-no">No</span></div>
+      </div>
+      <div class="check-item">
+        <div class="check-text" style="color:var(--gray-mid)">Flash / sync cord <span class="check-decided-no">No</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── PRE-DEPARTURE ── -->
+  <div class="section-label amber"><span>Pre-Departure Checklist</span></div>
+
+  <div class="tip-box">
+    <strong>Rolling carry-on is pre-packed</strong> — CPAP, 4× EPICKA Universal GaN adapters, travel router, family charging essentials. Confirm stock levels only, don't unpack.
+  </div>
+
+  <div class="two-col">
+
+    <div class="card">
+      <div class="card-title">
+        <div class="dot" style="background:var(--amber)"></div>
+        Photography
+      </div>
+      <div class="checklist">
+        <div class="check-item" onclick="toggle(this)">
+          <div class="check-box"></div>
+          <div><div class="check-text">15 rolls Ektacolor Pro 400 — ordered & in fridge</div></div>
+        </div>
+        <div class="check-item" onclick="toggle(this)">
+          <div class="check-box"></div>
+          <div><div class="check-text">Current roll finished before departure</div></div>
+        </div>
+        <div class="check-item" onclick="toggle(this)">
+          <div class="check-box"></div>
+          <div>
+            <div class="check-text">MP loaded — R01 labeled</div>
+            <div class="check-note">R01 · Milan · 0606</div>
+          </div>
+        </div>
+        <div class="check-item" onclick="toggle(this)">
+          <div class="check-box"></div>
+          <div><div class="check-text">All Leica M11P batteries charged (×4)</div></div>
+        </div>
+        <div class="check-item" onclick="toggle(this)">
+          <div class="check-box"></div>
+          <div><div class="check-text">SD cards formatted — 256GB UHS-II</div></div>
+        </div>
+        <div class="check-item" onclick="toggle(this)">
+          <div class="check-box"></div>
+          <div><div class="check-text">Rechargeable AA batteries (light meter)</div></div>
+        </div>
+        <div class="check-item" onclick="toggle(this)">
+          <div class="check-box"></div>
+          <div><div class="check-text">Sekonic 308U + LightMe app mapped to action button</div></div>
+        </div>
+        <div class="check-item" onclick="toggle(this)">
+          <div class="check-box"></div>
+          <div><div class="check-text">Peak Design 3L + 6L slings packed</div></div>
+        </div>
+        <div class="check-item" onclick="toggle(this)">
+          <div class="check-box"></div>
+          <div><div class="check-text">Camera & SD card for Kai</div></div>
+        </div>
+        <div class="check-item" onclick="toggle(this)">
+          <div class="check-box"></div>
+          <div>
+            <div class="check-text">White gaffer tape + Sharpie</div>
+            <div class="check-note">Roll labeling: R## · City · MMDD</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">
+        <div class="dot" style="background:var(--amber)"></div>
+        Family / Logistics
+      </div>
+      <div class="checklist">
+        <div class="check-item" onclick="toggle(this)">
+          <div class="check-box"></div>
+          <div><div class="check-text">Take out trash</div></div>
+        </div>
+        <div class="check-item" onclick="toggle(this)">
+          <div class="check-box"></div>
+          <div><div class="check-text">Travel pillows</div></div>
+        </div>
+        <div class="check-item" onclick="toggle(this)">
+          <div class="check-box"></div>
+          <div>
+            <div class="check-text">Zepbound supplies</div>
+            <div class="check-note">Zepbound · syringes · alcohol swabs · travel cold pack</div>
+          </div>
+        </div>
+        <div class="check-item" onclick="toggle(this)">
+          <div class="check-box"></div>
+          <div><div class="check-text">Repatha</div></div>
+        </div>
+        <div class="check-item" onclick="toggle(this)">
+          <div class="check-box"></div>
+          <div><div class="check-text">Medications</div></div>
+        </div>
+        <div class="check-item" onclick="toggle(this)">
+          <div class="check-box"></div>
+          <div><div class="check-text">RX glasses · RX sunglasses · reading glasses</div></div>
+        </div>
+        <div class="check-item" onclick="toggle(this)">
+          <div class="check-box"></div>
+          <div><div class="check-text">Sunglasses lanyard</div></div>
+        </div>
+        <div class="check-item" onclick="toggle(this)">
+          <div class="check-box"></div>
+          <div><div class="check-text">Boys' watch chargers</div></div>
+        </div>
+        <div class="check-item" onclick="toggle(this)">
+          <div class="check-box"></div>
+          <div><div class="check-text">Apple Watch cables for plane</div></div>
+        </div>
+        <div class="check-item" onclick="toggle(this)">
+          <div class="check-box"></div>
+          <div><div class="check-text">Wet wipes · travel tissues</div></div>
+        </div>
+        <div class="check-item" onclick="toggle(this)">
+          <div class="check-box"></div>
+          <div><div class="check-text">EDC flashlights (×2)</div></div>
+        </div>
+        <div class="check-item" onclick="toggle(this)">
+          <div class="check-box"></div>
+          <div><div class="check-text">Mosquito repellent</div></div>
+        </div>
+        <div class="check-item" onclick="toggle(this)">
+          <div class="check-box"></div>
+          <div><div class="check-text">Carabiners (×2)</div></div>
+        </div>
+        <div class="check-item" onclick="toggle(this)">
+          <div class="check-box"></div>
+          <div><div class="check-text">Braces snips</div></div>
+        </div>
+        <div class="check-item" onclick="toggle(this)">
+          <div class="check-box"></div>
+          <div><div class="check-text">Rat towels for plane</div></div>
+        </div>
+        <div class="check-item" onclick="toggle(this)">
+          <div class="check-box"></div>
+          <div><div class="check-text">Chia's retainers · glasses</div></div>
+        </div>
+        <div class="check-item" onclick="toggle(this)">
+          <div class="check-box"></div>
+          <div>
+            <div class="check-text">Larq water bottle</div>
+          </div>
+        </div>
+        <div class="check-item" onclick="toggle(this)">
+          <div class="check-box"></div>
+          <div>
+            <div class="check-text">Credit cards</div>
+            <div class="check-note">Chase Sapphire · Apple Card · Debit</div>
+          </div>
+        </div>
+        <div class="check-item" onclick="toggle(this)">
+          <div class="check-box"></div>
+          <div>
+            <div class="check-text">Fitness bands + jump ropes</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ── CONNECTIVITY ── -->
+  <div class="card" style="margin-top:.2rem">
+    <div class="card-title">
+      <div class="dot" style="background:var(--black)"></div>
+      Connectivity · Italy
+    </div>
+    <div class="connect-row">
+      <div class="connect-label">Plan</div>
+      <div class="connect-val">AT&T International Day Pass</div>
+    </div>
+    <div class="connect-row">
+      <div class="connect-label">Cost</div>
+      <div class="connect-val">$12/day line 1 · $6/day additional · 10-day max charge = $180 for 2 phones</div>
+    </div>
+    <div class="connect-row">
+      <div class="connect-label">Adapter</div>
+      <div class="connect-val">Type C / F · 4× EPICKA Universal GaN (in carry-on)</div>
+    </div>
+    <div class="connect-row">
+      <div class="connect-label">Router</div>
+      <div class="connect-val">Travel router — in carry-on</div>
+    </div>
+  </div>
+
+  <!-- ── ROLL LABELING PROTOCOL ── -->
+  <div class="section-label black"><span>Roll Labeling Protocol</span></div>
+
+  <div class="card">
+    <div class="card-title">
+      <div class="dot" style="background:var(--black)"></div>
+      How to Label a Shot Roll
+    </div>
+    <div style="font-size:13px;color:var(--gray);line-height:1.8;display:flex;flex-direction:column;gap:.5rem;">
+      <div>
+        <strong style="color:var(--black);font-family:'Bebas Neue',sans-serif;font-size:1.05rem;letter-spacing:.04em;">Format:</strong>
+        &nbsp; R## · City/City · D#-# · MMDD
+      </div>
+      <div style="background:var(--parchment);border-radius:6px;padding:.7rem 1rem;font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:.06em;color:var(--black);">
+        R03 · Venice/Florence · D4-5 · 0609
+      </div>
+      <div style="font-size:12px;display:flex;flex-direction:column;gap:4px;margin-top:.2rem;">
+        <div><strong style="color:var(--black)">R##</strong> — Sequential roll number for the trip</div>
+        <div><strong style="color:var(--black)">City/City</strong> — Where the roll was shot. One city if it stayed, two if it crossed. In order.</div>
+        <div><strong style="color:var(--black)">D#-#</strong> — Trip days covered by this roll</div>
+        <div><strong style="color:var(--black)">MMDD</strong> — Date the roll finished (when you apply the label)</div>
+      </div>
+      <div style="font-size:11px;color:var(--gray-mid);font-style:italic;border-left:2px solid var(--gray-light);padding-left:8px;margin-top:.3rem;">
+        Label is applied after the roll is shot — not at load. Records what happened, not what was planned. Tool: white gaffer tape + Sharpie.
+      </div>
+    </div>
+  </div>
+
+  <!-- ── CITY PHOTO GUIDE ── -->
+  <div class="section-label green"><span>Photography · City by City</span></div>
+
+  <div class="tip-box">
+    <strong>Italy in June —</strong> Hard Mediterranean sun 10am–4pm. Golden hour arrives late (~8:30–9pm) and is long and warm. Early morning in narrow streets is soft and directional. Ektacolor handles highlights gently — expose for shadows, let highlights roll off naturally.
+  </div>
+
+  <div class="tip-box" style="background:#FEF3F3;border-left-color:var(--it-red);">
+    <strong style="color:var(--it-red-dk)">⚠ Itinerary sync —</strong> Photography tips below are matched to <code>country-index.html</code> as of May 4, 2026. If the Italy trip page itinerary changes, update this page to match. Check city activities, day numbers, and Leica store details.
+  </div>
+
+  <!-- MILAN -->
+  <div class="city-block">
+    <div class="city-head">
+      <div>
+        <div class="city-name">Milan</div>
+        <div style="font-size:10px;color:var(--it-green-dk);font-weight:500;letter-spacing:.06em;margin-top:2px;">Days 1–2</div>
+      </div>
+      <div class="city-dates">Jun 6–7 · 2 nights</div>
+    </div>
+    <div class="city-body">
+
+      <div class="photo-tip">
+        <div class="tip-dot" style="background:var(--black)"></div>
+        <div class="tip-inner">
+          <strong>Day 1 evening</strong> — Piazza del Duomo + Galleria passeggiata
+          <div class="tip-note">Arrival day. Arriving 2:40pm — by 6pm you're settled and out. Evening light on the Duomo facade is warm and directional. The Galleria interior has soft diffused dome light at any hour. Family walking through — 28mm, let them move, don't pose. This is your first roll.</div>
+          <div class="light-tag golden">🌅 Evening · 6–9pm · first frames of the trip</div>
+        </div>
+      </div>
+
+      <div class="photo-tip">
+        <div class="tip-dot" style="background:var(--black)"></div>
+        <div class="tip-inner">
+          <strong>Day 2 morning</strong> — Duomo rooftop
+          <div class="tip-note">Pre-booked. ~€15. The rooftop gives you the city spread at eye level with the spires. Family framed against Milan skyline. 28mm — get close, include the Gothic detail. Go early before the heat and crowds build.</div>
+          <div class="light-tag golden">🌅 Morning · best before 10am</div>
+        </div>
+      </div>
+
+      <div class="photo-tip">
+        <div class="tip-dot" style="background:var(--black)"></div>
+        <div class="tip-inner">
+          <strong>Day 2</strong> — Galleria Vittorio Emanuele II
+          <div class="tip-note">Adjacent to the Duomo — same loop, no detour. Iron-and-glass dome. Katrin's first boutique stop. The geometry of the arcade floors and the light from above is a repeatable frame. 28mm looking up, or tight on someone looking at a window.</div>
+          <div class="light-tag soft">☁ Soft diffused · works any time</div>
+        </div>
+      </div>
+
+      <div class="photo-tip">
+        <div class="tip-dot" style="background:var(--black)"></div>
+        <div class="tip-inner">
+          <strong>Day 2 afternoon</strong> — Train to Venice after aperitivo lunch
+          <div class="tip-note">Aperitivo before catching the train. Outdoor table, afternoon light, the family at ease. This is a quiet documentary moment — don't overthink it. Shoot through lunch.</div>
+          <div class="light-tag soft">🌤 Relaxed pace · afternoon train</div>
+        </div>
+      </div>
+
+    </div>
+    <div class="shot-log-row">
+      <div class="shot-log-label">📱 iPhone ref shots logged</div>
+      <div class="shot-log-count zero">—</div>
+    </div>
+  </div>
+
+  <!-- VENICE -->
+  <div class="city-block">
+    <div class="city-head">
+      <div>
+        <div class="city-name">Venice</div>
+        <div style="font-size:10px;color:var(--it-green-dk);font-weight:500;letter-spacing:.06em;margin-top:2px;">Days 3–4</div>
+      </div>
+      <div class="city-dates">Jun 8–9 · 2 nights</div>
+    </div>
+    <div class="city-body">
+
+      <div class="photo-tip">
+        <div class="tip-dot" style="background:var(--it-green)"></div>
+        <div class="tip-inner">
+          <strong>Day 3</strong> — Vaporetto arrival on Grand Canal
+          <div class="tip-note">Take Line 1 — slower, more scenic, goes the full length of the Grand Canal. Camera out from the moment you board. The palazzi, the water light, the family seeing Venice for the first time. X100VI earns its place here — one hand, bags in the other, moving boat.</div>
+          <div class="light-tag soft">🌊 Water light · arrival afternoon</div>
+        </div>
+      </div>
+
+      <div class="photo-tip">
+        <div class="tip-dot" style="background:var(--it-green)"></div>
+        <div class="tip-inner">
+          <strong>Day 3</strong> — Wander the sestieri + Rialto area
+          <div class="tip-note">No agenda day — best photography day in Venice. Getting lost is the plan. Cannaregio, Dorsoduro, the bridges. Rialto market area has a local energy even in the afternoon. Family pausing at canals, looking at maps, ducking under washing lines. This is your documentary mode.</div>
+          <div class="light-tag golden">🌅 Late afternoon into evening · best light</div>
+        </div>
+      </div>
+
+      <div class="photo-tip">
+        <div class="tip-dot" style="background:var(--it-green)"></div>
+        <div class="tip-inner">
+          <strong>Day 4 early</strong> — St. Mark's Basilica before 9am
+          <div class="tip-note">Pre-booked entry. The mosaics inside are extraordinary in low interior light — M11P handles this better than the MP. Exterior of the Basilica and the Piazza at this hour still has some softness. By 10am it's wall-to-wall tourists.</div>
+          <div class="light-tag golden">🌅 Before 9am · essential</div>
+        </div>
+      </div>
+
+      <div class="photo-tip">
+        <div class="tip-dot" style="background:var(--it-green)"></div>
+        <div class="tip-inner">
+          <strong>Day 4 afternoon</strong> — Murano glass demo + gondola at dusk
+          <div class="tip-note">Murano: Vaporetto 4.1 or 4.2. The glass blowing demo — Jayden and Kai engaged and lit by furnace glow. A rare indoor light situation that's genuinely interesting. Then back for the gondola at dusk — negotiate directly with gondoliers. ~€90/6 people. 28mm, shoot from inside the gondola looking out and up at the buildings.</div>
+          <div class="light-tag golden">🌅 Gondola at dusk · 7–8pm · film moment</div>
+        </div>
+      </div>
+
+    </div>
+    <div class="shot-log-row">
+      <div class="shot-log-label">📱 iPhone ref shots logged</div>
+      <div class="shot-log-count zero">—</div>
+    </div>
+  </div>
+
+  <!-- FLORENCE -->
+  <div class="city-block">
+    <div class="city-head">
+      <div>
+        <div class="city-name">Florence</div>
+        <div style="font-size:10px;color:var(--it-red-dk);font-weight:500;letter-spacing:.06em;margin-top:2px;">Days 5–6</div>
+      </div>
+      <div class="city-dates">Jun 10–11 · 2 nights</div>
+    </div>
+    <div class="city-body">
+
+      <div class="photo-tip">
+        <div class="tip-dot" style="background:var(--it-red)"></div>
+        <div class="tip-inner">
+          <strong>Day 5 afternoon</strong> — Oltrarno + Ponte Vecchio
+          <div class="tip-note">South side of the Arno. Artisan workshops, trattorias, narrow streets. Slower pace. Ponte Vecchio: don't shoot from it — shoot it from Ponte Santa Trinita to the west. Family walking, the bridge behind them, the Arno catching afternoon light. 35mm works here — slightly more compression than 28mm.</div>
+          <div class="light-tag golden">🌅 Late afternoon · warm Arno light</div>
+        </div>
+      </div>
+
+      <div class="photo-tip">
+        <div class="tip-dot" style="background:var(--it-red)"></div>
+        <div class="tip-inner">
+          <strong>Day 5 — Leica Store Florence</strong> · Vicolo dell'Oro
+          <div class="tip-note">Joel's audible. Small street literally steps off Ponte Vecchio — folds naturally into the Oltrarno afternoon with zero detour. Check hours before going. This is on the itinerary — make it happen.</div>
+          <div class="light-tag soft" style="background:#fdf0f0;color:var(--it-red-dk);border-color:#f0b8bc;">📍 Leica · Vicolo dell'Oro · steps from Ponte Vecchio</div>
+        </div>
+      </div>
+
+      <div class="photo-tip">
+        <div class="tip-dot" style="background:var(--it-red)"></div>
+        <div class="tip-inner">
+          <strong>Day 6 early</strong> — Pisa day trip · Leaning Tower
+          <div class="tip-note">Regional train from SMN, ~1hr. The Tower climb is the experience (pre-booked, ~€18/person). But the family frame at the Piazza dei Miracoli — everyone doing the holding-up-the-tower pose — that's the documentary shot. Shoot it earnestly. It's a family memory, not a cliché.</div>
+          <div class="light-tag golden">🌅 Morning · back to Florence by early afternoon</div>
+        </div>
+      </div>
+
+      <div class="photo-tip">
+        <div class="tip-dot" style="background:var(--it-red)"></div>
+        <div class="tip-inner">
+          <strong>Day 6</strong> — Brunelleschi's Dome climb + Uffizi
+          <div class="tip-note">463 steps — Jayden and Kai will race each other. Frame them from behind climbing, or from above looking down into the stairwell spiral. Then Uffizi late afternoon — the galleries are dim and controlled. M11P for interiors. Look for Katrin and the boys in front of the Botticelli — the painting dwarfs them. That's the shot.</div>
+          <div class="light-tag soft">🌤 Afternoon museum light</div>
+        </div>
+      </div>
+
+    </div>
+    <div class="shot-log-row">
+      <div class="shot-log-label">📱 iPhone ref shots logged</div>
+      <div class="shot-log-count zero">—</div>
+    </div>
+  </div>
+
+  <!-- ROME -->
+  <div class="city-block">
+    <div class="city-head">
+      <div>
+        <div class="city-name">Rome</div>
+        <div style="font-size:10px;color:var(--it-green-dk);font-weight:500;letter-spacing:.06em;margin-top:2px;">Days 7–9</div>
+      </div>
+      <div class="city-dates">Jun 12–14 · 3 nights</div>
+    </div>
+    <div class="city-body">
+
+      <div class="photo-tip">
+        <div class="tip-dot" style="background:var(--it-green)"></div>
+        <div class="tip-inner">
+          <strong>Day 7 afternoon/evening</strong> — Trastevere
+          <div class="tip-note">Arrival day. Cobblestone streets, ivy-covered walls, warm restaurant light. This is your documentary neighborhood for the whole trip — return here every evening if you can. Day arrival: soft afternoon light in the narrow streets. Evening: M11P takes over. The spill of warm trattoria light onto cobblestones at 9pm is what this camera was made for.</div>
+          <div class="light-tag golden">🌙 Evening primary · M11P · 28mm</div>
+        </div>
+      </div>
+
+      <div class="photo-tip">
+        <div class="tip-dot" style="background:var(--it-green)"></div>
+        <div class="tip-inner">
+          <strong>Day 8 morning</strong> — Vatican Museums + Sistine Chapel
+          <div class="tip-note">Earliest entry slot — June crowds are intense by 10am. Sistine Chapel: no flash, technically no photography, everyone does it. The real shot is the family overwhelmed by the scale — look up at them looking up. M11P for low interior light. St. Peter's is free entry right after — the colonnade and piazza at midday has dramatic shadow geometry.</div>
+          <div class="light-tag harsh">☀ Interior low light → M11P · exterior midday geometry</div>
+        </div>
+      </div>
+
+      <div class="photo-tip">
+        <div class="tip-dot" style="background:var(--it-green)"></div>
+        <div class="tip-inner">
+          <strong>Day 8 afternoon — Leica Store Rome</strong> · Via dei due Macelli 57
+          <div class="tip-note">Joel's confirmed stop. Short Uber from Prati (~10 min). Via dei due Macelli is a 3-min walk from Trevi Fountain — folds naturally into the afternoon loop. Typically 10am–7pm. Then Trevi → Spanish Steps → gelato. The whole pocket is walkable in 2hrs.</div>
+          <div class="light-tag soft" style="background:#fdf0f0;color:var(--it-red-dk);border-color:#f0b8bc;">📍 Leica · Via dei due Macelli 57 · 3 min from Trevi</div>
+        </div>
+      </div>
+
+      <div class="photo-tip">
+        <div class="tip-dot" style="background:var(--it-green)"></div>
+        <div class="tip-inner">
+          <strong>Day 8</strong> — Trevi Fountain + Spanish Steps loop
+          <div class="tip-note">Trevi: the family throwing coins. Shoot from the side — not straight on like every tourist photo. The chaos and the water and their faces. Spanish Steps late afternoon are less crowded. 28mm looking up the steps with the church behind. Gelato somewhere in between.</div>
+          <div class="light-tag golden">🌅 Late afternoon · less crowded · better light</div>
+        </div>
+      </div>
+
+      <div class="photo-tip">
+        <div class="tip-dot" style="background:var(--it-green)"></div>
+        <div class="tip-inner">
+          <strong>Day 9 morning</strong> — Colosseum + Roman Forum + Palatine Hill
+          <div class="tip-note">One combo ticket, pre-booked essential. Full morning — 3-4hrs. Hard June light is actually interesting here — the ruins cast dramatic shadows. Meter for the shadow side of the family's faces, let the ruins blow slightly. Then Testaccio for lunch — Rome's most authentically local food neighborhood.</div>
+          <div class="light-tag harsh">☀ Hard light works for ruins · shadow geometry</div>
+        </div>
+      </div>
+
+      <div class="photo-tip">
+        <div class="tip-dot" style="background:var(--it-green)"></div>
+        <div class="tip-inner">
+          <strong>Day 9 afternoon</strong> — Free time · Piazza Navona
+          <div class="tip-note">No agenda afternoon. Piazza Navona has fountains, street artists, outdoor cafes. Low-pressure wandering — the best conditions for reactive shooting. Let the family set the pace. Follow, don't lead.</div>
+          <div class="light-tag soft">🌤 Relaxed · reactive · follow the family</div>
+        </div>
+      </div>
+
+    </div>
+    <div class="shot-log-row">
+      <div class="shot-log-label">📱 iPhone ref shots logged</div>
+      <div class="shot-log-count zero">—</div>
+    </div>
+  </div>
+
+  <!-- SALERNO / AMALFI -->
+  <div class="city-block">
+    <div class="city-head">
+      <div>
+        <div class="city-name">Salerno · Amalfi</div>
+        <div style="font-size:10px;color:var(--it-red-dk);font-weight:500;letter-spacing:.06em;margin-top:2px;">Days 10–11</div>
+      </div>
+      <div class="city-dates">Jun 15–16 · 2 nights</div>
+    </div>
+    <div class="city-body">
+
+      <div class="photo-tip">
+        <div class="tip-dot" style="background:var(--it-red)"></div>
+        <div class="tip-inner">
+          <strong>Day 10 afternoon</strong> — Lungomare Trieste waterfront
+          <div class="tip-note">Salerno's main promenade along the Gulf of Salerno. This is a real Italian city — not a tourist destination. Locals, kids on scooters, elderly couples walking. The Gulf and the hills behind everything. This is the Lisbon waterfront equivalent — your kind of shot. Decompress after Rome. Shoot slowly.</div>
+          <div class="light-tag golden">🌅 Late afternoon · locals out · real city</div>
+        </div>
+      </div>
+
+      <div class="photo-tip">
+        <div class="tip-dot" style="background:var(--it-red)"></div>
+        <div class="tip-inner">
+          <strong>Day 11 morning</strong> — Ferry approach to Amalfi
+          <div class="tip-note">Camera out before you arrive. The coast from the water is the frame — cliffs, town stacked into hillside, colour everywhere. Moving deck, one hand possible. X100VI earns its place. Positano visible on the way. Travelmar or Alicost, ~35-40 min from Salerno port (Molo Manfredi).</div>
+          <div class="light-tag soft">🚢 Morning ferry · coastal light · X100VI</div>
+        </div>
+      </div>
+
+      <div class="photo-tip">
+        <div class="tip-dot" style="background:var(--it-red)"></div>
+        <div class="tip-inner">
+          <strong>Day 11</strong> — Amalfi Cathedral staircase
+          <div class="tip-note">The family climbing toward you from below, or you above them looking down as they approach. The town drops away behind them. Hard midday light creates strong shadow on the stairs — work with it. The facade is striking enough to earn a straight architectural frame too.</div>
+          <div class="light-tag harsh">☀ Midday · hard light · use the shadow geometry</div>
+        </div>
+      </div>
+
+      <div class="photo-tip">
+        <div class="tip-dot" style="background:var(--it-red)"></div>
+        <div class="tip-inner">
+          <strong>Day 11 afternoon</strong> — Amalfi beach + long lunch
+          <div class="tip-note">Jayden and Kai in the water. This is the relaxed family documentation shot — nobody performing for the camera. Shoot from the beach edge, let them play. Long lunch on the waterfront — table, food, the coast behind. Ektacolor made for this light.</div>
+          <div class="light-tag soft">🌊 Beach light · afternoon · family at ease</div>
+        </div>
+      </div>
+
+    </div>
+    <div class="shot-log-row">
+      <div class="shot-log-label">📱 iPhone ref shots logged</div>
+      <div class="shot-log-count zero">—</div>
+    </div>
+  </div>
+
+  <!-- NAPLES -->
+  <div class="city-block">
+    <div class="city-head">
+      <div>
+        <div class="city-name">Naples</div>
+        <div style="font-size:10px;color:var(--black);font-weight:500;letter-spacing:.06em;margin-top:2px;">Day 12</div>
+      </div>
+      <div class="city-dates">Jun 17 · 1 night · Last day</div>
+    </div>
+    <div class="city-body">
+
+      <div class="photo-tip">
+        <div class="tip-dot" style="background:var(--black)"></div>
+        <div class="tip-inner">
+          <strong>Day 12 afternoon</strong> — Spaccanapoli
+          <div class="tip-note">The long straight street that cuts through the old city. Louder, grittier, more alive than anywhere else on this trip. Street food everywhere — fried pizza, sfogliatella. Let the kids eat everything. Don't try to control it. React. This is where your Tokyo instinct serves you most. Last major film opportunity of the trip — shoot freely.</div>
+          <div class="light-tag soft">🌆 Afternoon · street life peaks · reactive mode</div>
+        </div>
+      </div>
+
+      <div class="photo-tip">
+        <div class="tip-dot" style="background:var(--black)"></div>
+        <div class="tip-inner">
+          <strong>Day 12 evening</strong> — Chiaia waterfront · Vesuvius across the bay
+          <div class="tip-note">Via Caracciolo at last light. The volcano silhouetted across the water. Family at the railing. This is a once-in-a-trip frame — last night in Italy, last meaningful film moment. Don't miss it. Then Neapolitan pizza dinner — the table, the food, the faces. Shoot through dinner.</div>
+          <div class="light-tag golden">🌅 Last light of the trip · Vesuvius · make it count</div>
+        </div>
+      </div>
+
+    </div>
+    <div class="shot-log-row">
+      <div class="shot-log-label">📱 iPhone ref shots logged</div>
+      <div class="shot-log-count zero">—</div>
+    </div>
+  </div>
+
+  <!-- ── ROLL TRACKER ── -->
+  <div class="section-label black"><span>Roll Tracker</span></div>
+
+  <div class="card">
+    <div class="card-title">
+      <div class="dot" style="background:var(--black)"></div>
+      15 Rolls · Ektacolor Pro 400
+    </div>
+    <div class="roll-tracker">
+      <div class="roll-pill loaded"><div class="roll-pip"></div>R01 · Milan · 0606</div>
+      <div class="roll-pill"><div class="roll-pip"></div>R02</div>
+      <div class="roll-pill"><div class="roll-pip"></div>R03</div>
+      <div class="roll-pill"><div class="roll-pip"></div>R04</div>
+      <div class="roll-pill"><div class="roll-pip"></div>R05</div>
+      <div class="roll-pill"><div class="roll-pip"></div>R06</div>
+      <div class="roll-pill"><div class="roll-pip"></div>R07</div>
+      <div class="roll-pill"><div class="roll-pip"></div>R08</div>
+      <div class="roll-pill"><div class="roll-pip"></div>R09</div>
+      <div class="roll-pill"><div class="roll-pip"></div>R10</div>
+      <div class="roll-pill"><div class="roll-pip"></div>R11</div>
+      <div class="roll-pill"><div class="roll-pip"></div>R12</div>
+      <div class="roll-pill"><div class="roll-pip"></div>R13</div>
+      <div class="roll-pill"><div class="roll-pip"></div>R14</div>
+      <div class="roll-pill"><div class="roll-pip"></div>R15</div>
+    </div>
+    <div style="margin-top:.9rem;font-size:11px;color:var(--gray-mid);font-style:italic;">
+      Update roll labels nightly on MacBook. Shot = green · Loaded = amber · Unshot = default
+    </div>
+  </div>
+
+  <!-- ── FILM MINDSET ── -->
+  <div class="section-label red"><span>Film Mindset · Italy</span></div>
+
+  <div class="card">
+    <div style="font-size:13px;color:var(--gray);line-height:1.8;display:flex;flex-direction:column;gap:.6rem;">
+      <div>You have <strong style="color:var(--black)">15 rolls</strong>. That's 540 frames. Shoot freely — you will not run out.</div>
+      <div>After the MP, the iPhone comes up. One photo. Location · shutter · aperture · one note. 20 seconds. That's the log.</div>
+      <div>Ektacolor handles highlights gently. In hard Italian midday sun — expose for the shadows, let the highlights roll off. The film will hold it.</div>
+      <div>The 28mm is your eye. It's always on. Only reach for 35mm or 50mm when you feel it — don't think about it.</div>
+      <div>You're not slowing the family down. You're documenting them. The camera is already around your neck. The shot takes 2 seconds. Trust that.</div>
+    </div>
+  </div>
+
+</main>
+
+<div class="flag-stripe"><span></span><span></span><span></span></div>
+
+<footer>
+  <div class="leica-dot-sm"></div>
+  Joel Barnabas · Italy 2026 · joel-travel-photo
+  <div class="leica-dot-sm"></div>
+</footer>
+
+<script>
+  function toggle(item) {
+    const box = item.querySelector('.check-box');
+    const text = item.querySelector('.check-text');
+    if (!box) return;
+    const isChecked = box.classList.toggle('checked');
+    item.classList.toggle('done', isChecked);
+  }
+</script>
+
+</body>
+</html>
