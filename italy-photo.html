@@ -528,6 +528,114 @@
     flex-shrink: 0;
   }
 
+  /* ── ROLL ASSIGNMENT CARD ── */
+  .roll-assign-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: .3rem;
+  }
+  .roll-assign-table th {
+    font-size: 9px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--gray-mid);
+    font-weight: 400;
+    padding: 0 0 .55rem;
+    text-align: left;
+    border-bottom: 1px solid var(--gray-light);
+  }
+  .roll-assign-table th:first-child { width: 52px; }
+  .roll-assign-row {
+    border-bottom: 1px solid var(--parchment);
+  }
+  .roll-assign-row:last-child { border-bottom: none; }
+  .roll-assign-row td {
+    padding: .55rem 0;
+    vertical-align: middle;
+  }
+  .roll-num-badge {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1rem;
+    letter-spacing: .06em;
+    color: var(--gray-mid);
+    line-height: 1;
+  }
+  .roll-num-badge.is-shot { color: var(--it-green-dk); }
+  .roll-num-badge.is-loaded { color: var(--amber); }
+
+  /* city multi-select */
+  .city-picker {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-bottom: .3rem;
+  }
+  .city-chip {
+    font-size: 10px;
+    font-weight: 500;
+    padding: 2px 8px;
+    border-radius: 10px;
+    border: 1px solid var(--gray-light);
+    background: var(--off-white);
+    color: var(--gray-mid);
+    cursor: pointer;
+    user-select: none;
+    transition: background .12s, color .12s, border-color .12s;
+  }
+  .city-chip.selected {
+    background: var(--it-green-lt);
+    border-color: #9fd4b8;
+    color: var(--it-green-dk);
+  }
+  .city-chip.disabled {
+    opacity: .28;
+    cursor: default;
+    pointer-events: none;
+  }
+
+  /* day + date inputs */
+  .roll-meta-row {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .roll-meta-input {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--black);
+    background: var(--parchment);
+    border: 1px solid var(--gray-light);
+    border-radius: 4px;
+    padding: 3px 7px;
+    width: 72px;
+    outline: none;
+    transition: border-color .12s;
+  }
+  .roll-meta-input:focus { border-color: var(--it-green); }
+  .roll-meta-input::placeholder { color: var(--gray-light); font-style: italic; }
+  .roll-meta-label {
+    font-size: 9px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--gray-mid);
+  }
+
+  /* rendered label preview */
+  .roll-label-preview {
+    margin-top: .35rem;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: .95rem;
+    letter-spacing: .07em;
+    color: var(--black);
+    background: var(--parchment);
+    border-radius: 4px;
+    padding: .3rem .7rem;
+    display: none;
+  }
+  .roll-label-preview.visible { display: block; }
+
   /* ── TIP BOX ── */
   .tip-box {
     background: var(--amber-lt);
@@ -1343,13 +1451,38 @@
     </div>
   </div>
 
+  <!-- ── ROLL ASSIGNMENT ── -->
+  <div class="section-label black"><span>Roll Log · Electronic Gaffer Tape</span></div>
+
+  <div class="card">
+    <div class="card-title">
+      <div class="dot" style="background:var(--black)"></div>
+      Roll-by-Roll Record
+    </div>
+    <div style="font-size:11px;color:var(--gray-mid);font-style:italic;margin-bottom:.9rem;line-height:1.6;">
+      When a roll is finished and the physical label is applied — open this card and fill in the same four fields. Shot rolls are selectable. Saves automatically.
+    </div>
+    <table class="roll-assign-table">
+      <thead>
+        <tr>
+          <th>Roll</th>
+          <th>City · Days · Date</th>
+        </tr>
+      </thead>
+      <tbody id="roll-assign-body">
+        <!-- rendered by JS -->
+      </tbody>
+    </table>
+  </div>
+
   <!-- ── FILM MINDSET ── -->
   <div class="section-label red"><span>Film Mindset · Italy</span></div>
 
   <div class="card">
     <div style="font-size:13px;color:var(--gray);line-height:1.8;display:flex;flex-direction:column;gap:.6rem;">
       <div>You have <strong style="color:var(--black)">15 rolls</strong>. That's 540 frames. Shoot freely — you will not run out.</div>
-      <div>After the MP, the iPhone comes up. One photo. Location · shutter · aperture · one note. 20 seconds. That's the log.</div>
+      <div>Metering hierarchy: MP internal meter is the constant. Lightme via quick action button for a fast second opinion. 308X when you're stationary and have real time...a restaurant interior, a composed shot, a deliberate setup.</div>
+      <div>iPhone reference shot is per location, not per frame. One shot that anchors where you were and what the light looked like. Camera roll + GPS + timestamp is the passive record. That's enough.</div>
       <div>Ektacolor handles highlights gently. In hard Italian midday sun — expose for the shadows, let the highlights roll off. The film will hold it.</div>
       <div>The 28mm is your eye. It's always on. Only reach for 35mm or 50mm when you feel it — don't think about it.</div>
       <div>You're not slowing the family down. You're documenting them. The camera is already around your neck. The shot takes 2 seconds. Trust that.</div>
@@ -1450,6 +1583,158 @@
   const rolls = loadRolls();
   renderRolls(rolls);
   updateBanner(rolls);
+
+  // ── ROLL ASSIGNMENT CARD ──
+  const CITIES = ['Milan', 'Venice', 'Florence', 'Pisa', 'Rome', 'Salerno', 'Amalfi', 'Naples'];
+  const ASSIGN_KEY = 'italy26_roll_assign';
+
+  function loadAssignments() {
+    try {
+      const saved = localStorage.getItem(ASSIGN_KEY);
+      if (saved) return JSON.parse(saved);
+    } catch(e) {}
+    // default: 15 empty entries
+    return Array.from({ length: 15 }, (_, i) => ({
+      id: i + 1,
+      cities: [],
+      days: '',
+      date: ''
+    }));
+  }
+
+  function saveAssignments(assignments) {
+    try { localStorage.setItem(ASSIGN_KEY, JSON.stringify(assignments)); } catch(e) {}
+  }
+
+  function buildLabelPreview(entry) {
+    if (!entry.cities.length && !entry.days && !entry.date) return '';
+    const num = String(entry.id).padStart(2, '0');
+    const cityStr = entry.cities.join('/') || '—';
+    const dayStr  = entry.days || '—';
+    const dateStr = entry.date || '—';
+    return `R${num} · ${cityStr} · ${dayStr} · ${dateStr}`;
+  }
+
+  function renderAssignCard() {
+    const assignments = loadAssignments();
+    const currentRolls = loadRolls();
+    const tbody = document.getElementById('roll-assign-body');
+    tbody.innerHTML = '';
+
+    assignments.forEach((entry) => {
+      const roll = currentRolls.find(r => r.id === entry.id);
+      const state = roll ? roll.state : 'unshot';
+      const isActive = state === 'shot' || state === 'loaded';
+      const isShot   = state === 'shot';
+      const isLoaded = state === 'loaded';
+
+      const num = String(entry.id).padStart(2, '0');
+      const badgeClass = isShot ? 'is-shot' : (isLoaded ? 'is-loaded' : '');
+
+      const tr = document.createElement('tr');
+      tr.className = 'roll-assign-row';
+
+      // ── Roll number cell ──
+      const tdNum = document.createElement('td');
+      tdNum.innerHTML = `<div class="roll-num-badge ${badgeClass}">R${num}</div>`;
+      tr.appendChild(tdNum);
+
+      // ── Content cell ──
+      const tdContent = document.createElement('td');
+
+      if (!isActive) {
+        // Dimmed — not yet shot or loaded
+        tdContent.innerHTML = `<span style="font-size:11px;color:var(--gray-light);font-style:italic;">Not yet shot</span>`;
+      } else {
+        // City picker
+        const picker = document.createElement('div');
+        picker.className = 'city-picker';
+        CITIES.forEach(city => {
+          const chip = document.createElement('div');
+          chip.className = 'city-chip' + (entry.cities.includes(city) ? ' selected' : '');
+          chip.textContent = city;
+          chip.addEventListener('click', () => {
+            const assignments = loadAssignments();
+            const e = assignments.find(a => a.id === entry.id);
+            const idx = e.cities.indexOf(city);
+            if (idx === -1) {
+              e.cities.push(city);
+            } else {
+              e.cities.splice(idx, 1);
+            }
+            saveAssignments(assignments);
+            renderAssignCard();
+          });
+          picker.appendChild(chip);
+        });
+
+        // Day range + date inputs
+        const metaRow = document.createElement('div');
+        metaRow.className = 'roll-meta-row';
+        metaRow.innerHTML = `
+          <span class="roll-meta-label">Days</span>
+          <input class="roll-meta-input" id="days-${entry.id}" type="text" placeholder="D3-4" value="${entry.days}" maxlength="8">
+          <span class="roll-meta-label">Finished</span>
+          <input class="roll-meta-input" id="date-${entry.id}" type="text" placeholder="0608" value="${entry.date}" maxlength="4">
+        `;
+
+        // Label preview
+        const preview = document.createElement('div');
+        const labelText = buildLabelPreview(entry);
+        preview.className = 'roll-label-preview' + (labelText ? ' visible' : '');
+        preview.textContent = labelText || '';
+
+        tdContent.appendChild(picker);
+        tdContent.appendChild(metaRow);
+        tdContent.appendChild(preview);
+      }
+
+      tr.appendChild(tdContent);
+      tbody.appendChild(tr);
+
+      // Wire input events after render
+      if (isActive) {
+        const daysInput = document.getElementById(`days-${entry.id}`);
+        const dateInput = document.getElementById(`date-${entry.id}`);
+
+        function saveInputs() {
+          const assignments = loadAssignments();
+          const e = assignments.find(a => a.id === entry.id);
+          e.days = daysInput ? daysInput.value.trim() : '';
+          e.date = dateInput ? dateInput.value.trim() : '';
+          saveAssignments(assignments);
+          // Update preview live
+          const updated = assignments.find(a => a.id === entry.id);
+          const text = buildLabelPreview(updated);
+          const prev = document.querySelector(`#roll-assign-body .roll-label-preview:nth-of-type(${entry.id})`);
+          // simpler: re-render preview in place
+          const previews = document.querySelectorAll('.roll-label-preview');
+          // find this row's preview
+          const rows = document.querySelectorAll('.roll-assign-row');
+          const rowEl = rows[entry.id - 1];
+          if (rowEl) {
+            const p = rowEl.querySelector('.roll-label-preview');
+            if (p) {
+              p.textContent = text;
+              p.classList.toggle('visible', !!text);
+            }
+          }
+        }
+
+        if (daysInput) daysInput.addEventListener('input', saveInputs);
+        if (dateInput) dateInput.addEventListener('input', saveInputs);
+      }
+    });
+  }
+
+  renderAssignCard();
+
+  // Re-render assignment card whenever roll state changes so availability updates
+  const origSaveRolls = saveRolls;
+  function saveRolls(r) {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(r)); } catch(e) {}
+    renderAssignCard();
+  }
 </script>
 
 </body>
