@@ -415,33 +415,74 @@
   }
 
   .photo-tip {
-    display: flex;
-    gap: 9px;
-    align-items: flex-start;
-    font-size: 14px;
-    color: #333;
-    line-height: 1.6;
+    border-left: 2px solid var(--it-green);
+    padding: .7rem .9rem;
+    background: var(--off-white);
+    border-radius: 0 6px 6px 0;
+    margin-bottom: .1rem;
   }
 
-  .tip-dot {
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    margin-top: 6px;
-    flex-shrink: 0;
-  }
+  .photo-tip.red-tip  { border-left-color: var(--it-red); }
+  .photo-tip.black-tip { border-left-color: var(--black); }
 
+  .tip-dot { display: none; }
   .tip-inner { flex: 1; }
 
-  .tip-note {
-    font-size: 12.5px;
-    color: #555;
-    font-style: italic;
-    border-left: 2px solid var(--gray-light);
-    padding-left: 8px;
-    margin-top: 4px;
-    line-height: 1.6;
+  .tip-title {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--black);
+    margin-bottom: .4rem;
   }
+
+  .tip-bullets {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 .5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .tip-bullets li {
+    font-size: 12.5px;
+    color: var(--gray);
+    display: flex;
+    gap: 7px;
+    align-items: flex-start;
+    line-height: 1.55;
+  }
+
+  .tip-bullets li::before {
+    content: '—';
+    color: var(--it-green);
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .red-tip .tip-bullets li::before { color: var(--it-red); }
+  .black-tip .tip-bullets li::before { color: var(--black); }
+
+  .tip-footer {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    flex-wrap: wrap;
+    margin-top: .4rem;
+  }
+
+  .gear-badge {
+    font-size: 10px;
+    font-weight: 500;
+    padding: 2px 7px;
+    border-radius: 4px;
+    background: var(--white);
+    border: 1px solid var(--gray-light);
+    color: var(--black);
+    letter-spacing: .03em;
+  }
+
+  .tip-note { display: none; }
 
   .light-tag {
     display: inline-flex;
@@ -451,7 +492,6 @@
     font-weight: 500;
     padding: 2px 8px;
     border-radius: 3px;
-    margin-top: 4px;
     letter-spacing: .04em;
   }
 
@@ -1098,21 +1138,33 @@
     </div>
     <div class="city-body">
 
-      <div class="photo-tip">
-        <div class="tip-dot" style="background:var(--black)"></div>
-        <div class="tip-inner">
-          <strong>Day 1 evening</strong> — Piazza del Duomo + Galleria passeggiata
-          <div class="tip-note">Arrival day. Arriving 2:40pm — by 6pm you're settled and out. Evening light on the Duomo facade is warm and directional. The Galleria dome diffuses everything softly at any hour — geometry of the arcade floors, the light from above. Family walking through — 28mm, let them move, don't pose. First roll.</div>
-          <div class="light-tag golden">🌅 Evening · 6–9pm · first frames of the trip</div>
+      <div class="photo-tip black-tip">
+        <div class="tip-title">Day 1 — Piazza del Duomo + Galleria passeggiata</div>
+        <ul class="tip-bullets">
+          <li>Arriving 2:40pm — by 6pm settled and out, evening light on the Duomo facade warm and directional</li>
+          <li>Galleria dome diffuses everything softly — geometry of the arcade floors, light from above</li>
+          <li>Family walking through — 28mm, let them move, don't pose. First roll.</li>
+        </ul>
+        <div class="tip-footer">
+          <span class="gear-badge">MP</span>
+          <span class="gear-badge">28mm</span>
+          <span class="light-tag golden">🌅 Evening · 6–9pm · first frames</span>
         </div>
       </div>
 
-      <div class="photo-tip">
-        <div class="tip-dot" style="background:var(--black)"></div>
-        <div class="tip-inner">
-          <strong>Day 2</strong> — Lake Como · Bellagio · Lugano · Full day tour
-          <div class="tip-note">Full day, Alps-ringed lake, completely different light from anywhere else on this trip. X100VI on the boat and between stops — one hand, moving deck. MP for the villages, the family at the lake edge, Bellagio's narrow streets when you have both feet on the ground. Lake light is soft and reflective all day — Ektacolor will hold it.</div>
-          <div class="light-tag golden">🌅 Full day · lake light · X100VI water · MP land</div>
+      <div class="photo-tip black-tip">
+        <div class="tip-title">Day 2 — Lake Como · Bellagio · Lugano · Full day tour</div>
+        <ul class="tip-bullets">
+          <li>Full day, Alps-ringed lake, completely different light from anywhere else on this trip</li>
+          <li>X100VI on the boat and between stops — one hand, moving deck</li>
+          <li>MP for the villages, family at the lake edge, Bellagio's narrow streets</li>
+          <li>Lake light soft and reflective all day — Ektacolor will hold it</li>
+        </ul>
+        <div class="tip-footer">
+          <span class="gear-badge">X100VI</span>
+          <span class="gear-badge">MP</span>
+          <span class="gear-badge">28mm</span>
+          <span class="light-tag golden">🌅 Full day · lake light · X100VI water · MP land</span>
         </div>
       </div>
 
@@ -1139,20 +1191,37 @@
     <div class="city-body">
 
       <div class="photo-tip">
-        <div class="tip-dot" style="background:var(--it-green)"></div>
-        <div class="tip-inner">
-          <strong>Day 3</strong> — Grand Canal arrival · Doge's Palace · Gondola at dusk
-          <div class="tip-note">Vaporetto Line 1 from Santa Lucia — X100VI, one hand, bags in the other, camera up from the moment you board. Doge's Palace 15:00 confirmed — the Bridge of Sighs, the prison cells. Jayden and Kai will respond to this. M11P for the darker interior corridors. Gondola ~19:00 from Riva degli Schiavoni, negotiate directly — 28mm from inside looking out and up at the buildings. Dusk light on the canals. This is the Venice frame.</div>
-          <div class="light-tag golden">🌅 Water light arrival · M11P Doge's interiors · Gondola dusk 28mm</div>
+        <div class="tip-title">Day 3 — Grand Canal arrival · Doge's Palace · Gondola at dusk</div>
+        <ul class="tip-bullets">
+          <li>Vaporetto Line 1 from Santa Lucia — camera up from the moment you board, palazzi and water light</li>
+          <li>Doge's Palace 15:00 confirmed — Bridge of Sighs and prison cells, Jayden and Kai will respond to this</li>
+          <li>M11P for the darker interior corridors</li>
+          <li>Gondola ~19:00 from Riva degli Schiavoni — 28mm from inside looking out and up at the buildings</li>
+          <li>Dusk light on the canals — this is the Venice frame</li>
+        </ul>
+        <div class="tip-footer">
+          <span class="gear-badge">X100VI</span>
+          <span class="gear-badge">M11P</span>
+          <span class="gear-badge">MP</span>
+          <span class="gear-badge">28mm</span>
+          <span class="light-tag golden">🌅 Water light · Gondola dusk</span>
         </div>
       </div>
 
       <div class="photo-tip">
-        <div class="tip-dot" style="background:var(--it-green)"></div>
-        <div class="tip-inner">
-          <strong>Day 4</strong> — Murano & Burano guided tour · Shopping · San Marco
-          <div class="tip-note">City Wonders private boat, 08:30, 5 hours. Murano glass blowing — Jayden and Kai lit by furnace glow, rare interior light, M11P. Burano: the most colorful island in Italy, brightly painted houses in morning light — Ektacolor made for this. MP. Afternoon: family in the boutique context of Calle Larga XXII Marzo, 35mm. San Marco exterior — magnificent, free, deliberate decision not to book the interior.</div>
-          <div class="light-tag golden">🌅 Furnace light M11P · Burano color MP · 35mm afternoon</div>
+        <div class="tip-title">Day 4 — Murano & Burano guided tour · Shopping · San Marco</div>
+        <ul class="tip-bullets">
+          <li>City Wonders private boat, 08:30, 5 hours</li>
+          <li>Murano glass blowing — Jayden and Kai lit by furnace glow, rare interior light, M11P</li>
+          <li>Burano — most colorful island in Italy, morning light, Ektacolor made for this, MP</li>
+          <li>Afternoon: family in boutique context of Calle Larga XXII Marzo, 35mm</li>
+          <li>San Marco exterior — magnificent, free, deliberate decision not to book the interior</li>
+        </ul>
+        <div class="tip-footer">
+          <span class="gear-badge">M11P</span>
+          <span class="gear-badge">MP</span>
+          <span class="gear-badge">35mm</span>
+          <span class="light-tag golden">🌅 Furnace light · Burano color</span>
         </div>
       </div>
 
@@ -1178,21 +1247,35 @@
     </div>
     <div class="city-body">
 
-      <div class="photo-tip">
-        <div class="tip-dot" style="background:var(--it-red)"></div>
-        <div class="tip-inner">
-          <strong>Day 5</strong> — Oltrarno · Ponte Vecchio · Leica Store · David
-          <div class="tip-note">South side of the Arno — artisan workshops, narrow streets, slower pace. Shoot Ponte Vecchio from Ponte Santa Trinita to the west, not from it — family walking, bridge behind them, Arno light. Leica Store Florence is steps off the bridge at Vicolo dell'Oro, zero detour. Galleria dell'Accademia 16:45 confirmed — the approach is the shot, dim corridor of unfinished Prisoners leading to David. Don't rush it.</div>
-          <div class="light-tag golden">🌅 Late afternoon Arno light · 35mm Ponte Vecchio · David 16:45</div>
+      <div class="photo-tip red-tip">
+        <div class="tip-title">Day 5 — Oltrarno · Ponte Vecchio · Leica Store · David</div>
+        <ul class="tip-bullets">
+          <li>South side of the Arno — artisan workshops, narrow streets, slower pace</li>
+          <li>Shoot Ponte Vecchio from Ponte Santa Trinita to the west, not from it — family walking, bridge behind them, Arno light</li>
+          <li>Leica Store Florence at Vicolo dell'Oro, steps off the bridge, zero detour</li>
+          <li>Galleria dell'Accademia 16:45 confirmed — the approach is the shot, dim corridor of unfinished Prisoners leading to David. Don't rush it.</li>
+        </ul>
+        <div class="tip-footer">
+          <span class="gear-badge">MP</span>
+          <span class="gear-badge">M11P</span>
+          <span class="gear-badge">35mm</span>
+          <span class="light-tag golden">🌅 Late afternoon Arno light · David 16:45</span>
         </div>
       </div>
 
-      <div class="photo-tip">
-        <div class="tip-dot" style="background:var(--it-red)"></div>
-        <div class="tip-inner">
-          <strong>Day 6</strong> — Tuscany full day · Siena · Winery · San Gimignano · Pisa
-          <div class="tip-note">Full day, departs 08:00. Siena's Piazza del Campo — 28mm wide, crowd and architecture together. Fattoria Poggio Alloro winery: the family at the table in the Chianti hills, shoot through the lunch, let it breathe. San Gimignano: 28mm looking up at the medieval towers, tight streets. Pisa last — the family holding-up-the-tower shot is mandatory. Shoot it earnestly. Returns after 21:00.</div>
-          <div class="light-tag golden">🌅 Full day · 28mm throughout · winery table · Pisa last light</div>
+      <div class="photo-tip red-tip">
+        <div class="tip-title">Day 6 — Tuscany full day · Siena · Winery · San Gimignano · Pisa</div>
+        <ul class="tip-bullets">
+          <li>Siena's Piazza del Campo — 28mm wide, crowd and architecture together</li>
+          <li>Fattoria Poggio Alloro winery — family at the table in the Chianti hills, shoot through the lunch</li>
+          <li>San Gimignano — 28mm looking up at the medieval towers, tight streets</li>
+          <li>Pisa last — the holding-up-the-tower shot is mandatory, shoot it earnestly</li>
+          <li>Returns after 21:00 — long day</li>
+        </ul>
+        <div class="tip-footer">
+          <span class="gear-badge">MP</span>
+          <span class="gear-badge">28mm</span>
+          <span class="light-tag golden">🌅 Full day · 28mm throughout · Pisa last light</span>
         </div>
       </div>
 
@@ -1219,29 +1302,51 @@
     <div class="city-body">
 
       <div class="photo-tip">
-        <div class="tip-dot" style="background:var(--it-green)"></div>
-        <div class="tip-inner">
-          <strong>Day 7</strong> — Arrive Rome · Trastevere · Via Condotti
-          <div class="tip-note">Arrival day. Trastevere afternoon — cobblestone streets, ivy walls, warm outdoor light, 28mm documentary mode. Via Condotti evening — family in the luxury street context, Spanish Steps at the top. M11P takes over as light drops. Spill of warm trattoria light onto Trastevere cobblestones at 9pm — that's what this camera was made for.</div>
-          <div class="light-tag golden">🌅 Afternoon Trastevere · 28mm · M11P evening</div>
+        <div class="tip-title">Day 7 — Arrive Rome · Trastevere · Via Condotti</div>
+        <ul class="tip-bullets">
+          <li>Trastevere afternoon — cobblestone streets, ivy walls, warm outdoor light, 28mm documentary mode</li>
+          <li>Via Condotti evening — family in the luxury street context, Spanish Steps at the top</li>
+          <li>M11P takes over as light drops — spill of warm trattoria light onto cobblestones at 9pm</li>
+        </ul>
+        <div class="tip-footer">
+          <span class="gear-badge">MP</span>
+          <span class="gear-badge">M11P</span>
+          <span class="gear-badge">28mm</span>
+          <span class="light-tag golden">🌅 Afternoon Trastevere · M11P evening</span>
         </div>
       </div>
 
       <div class="photo-tip">
-        <div class="tip-dot" style="background:var(--it-green)"></div>
-        <div class="tip-inner">
-          <strong>Day 8</strong> — Vatican · Leica Store Rome · Trevi · Spanish Steps
-          <div class="tip-note">Dress code all four — knees and shoulders covered. Vatican 08:30 confirmed — Raphael Rooms, Sistine Chapel, St. Peter's. No flash in the Sistine. The real shot is the family overwhelmed looking up. M11P for interior low light. St. Peter's colonnade midday — dramatic shadow geometry. Leica Store Rome, Via dei Due Macelli 57 — 185sqm, barrel-vaulted ceilings, the most significant Leica space on the trip, Saturday open. 3 min walk to Trevi — shoot from the side, not straight on. Spanish Steps late afternoon, less crowded.</div>
-          <div class="light-tag harsh">☀ Vatican M11P · St Peter's shadow geometry · Trevi side angle</div>
+        <div class="tip-title">Day 8 — Vatican · Leica Store Rome · Trevi · Spanish Steps</div>
+        <ul class="tip-bullets">
+          <li>Dress code all four — knees and shoulders covered</li>
+          <li>Vatican 08:30 confirmed — Raphael Rooms, Sistine Chapel, St. Peter's</li>
+          <li>The real shot in the Sistine — family overwhelmed looking up. M11P for interior low light.</li>
+          <li>St. Peter's colonnade midday — dramatic shadow geometry</li>
+          <li>Leica Store Rome, Via dei Due Macelli 57 — 185sqm, barrel-vaulted ceilings, Saturday open</li>
+          <li>Trevi — shoot from the side, not straight on. Spanish Steps late afternoon, less crowded.</li>
+        </ul>
+        <div class="tip-footer">
+          <span class="gear-badge">M11P</span>
+          <span class="gear-badge">MP</span>
+          <span class="gear-badge">28mm</span>
+          <span class="light-tag harsh">☀ Vatican M11P · St Peter's shadow geometry · Trevi side angle</span>
         </div>
       </div>
 
       <div class="photo-tip">
-        <div class="tip-dot" style="background:var(--it-green)"></div>
-        <div class="tip-inner">
-          <strong>Day 9</strong> — Colosseum · Forum · Palatine · Free afternoon
-          <div class="tip-note">Confirmed, Arena floor access included. Hard June light works for ruins — the shadows are the shot. Meter for the shadow side of family faces, let the stone blow slightly. Arena floor — 28mm wide, include the full scale of the walls above. Forum then Palatine, pace the heat. Afternoon free — Piazza Navona, low pressure, reactive, follow the family.</div>
-          <div class="light-tag harsh">☀ Hard light shadow geometry · 28mm Arena floor · reactive afternoon</div>
+        <div class="tip-title">Day 9 — Colosseum · Forum · Palatine · Free afternoon</div>
+        <ul class="tip-bullets">
+          <li>Confirmed, Arena floor access included — standing where gladiators stood</li>
+          <li>Hard June light works for ruins — the shadows are the shot</li>
+          <li>Meter for shadow side of family faces, let the stone blow slightly</li>
+          <li>28mm wide on the Arena floor, include full scale of walls above</li>
+          <li>Afternoon free — Piazza Navona, low pressure, reactive, follow the family</li>
+        </ul>
+        <div class="tip-footer">
+          <span class="gear-badge">MP</span>
+          <span class="gear-badge">28mm</span>
+          <span class="light-tag harsh">☀ Hard light shadow geometry · Arena floor · reactive afternoon</span>
         </div>
       </div>
 
@@ -1267,21 +1372,33 @@
     </div>
     <div class="city-body">
 
-      <div class="photo-tip">
-        <div class="tip-dot" style="background:var(--it-red)"></div>
-        <div class="tip-inner">
-          <strong>Day 10</strong> — Arrive Salerno · Lungomare Trieste
-          <div class="tip-note">Real Italian city, not a tourist destination. Lungomare Trieste afternoon — locals, kids on scooters, elderly couples, the Gulf of Salerno and the hills behind everything. The Lisbon waterfront equivalent. Decompress after Rome. 28mm, shoot slowly.</div>
-          <div class="light-tag golden">🌅 Late afternoon · locals out · 28mm · decompress</div>
+      <div class="photo-tip red-tip">
+        <div class="tip-title">Day 10 — Arrive Salerno · Lungomare Trieste</div>
+        <ul class="tip-bullets">
+          <li>Real Italian city, not a tourist destination — locals, kids on scooters, elderly couples</li>
+          <li>Gulf of Salerno and the hills behind everything — the Lisbon waterfront equivalent</li>
+          <li>Decompress after Rome. 28mm, shoot slowly.</li>
+        </ul>
+        <div class="tip-footer">
+          <span class="gear-badge">MP</span>
+          <span class="gear-badge">28mm</span>
+          <span class="light-tag golden">🌅 Late afternoon · locals out · decompress</span>
         </div>
       </div>
 
-      <div class="photo-tip">
-        <div class="tip-dot" style="background:var(--it-red)"></div>
-        <div class="tip-inner">
-          <strong>Day 11</strong> — Ferry · Boat tour · Amalfi · Confirmed
-          <div class="tip-note">08:40 Alicost ferry from Molo Manfredi — camera out, coast from the water is the frame. X100VI on the moving deck. 09:30 Cruise & Snorkel Amalfi Coast + Positano confirmed, 4 hours — X100VI for the boat, water risk, one hand. MP back out on land in Amalfi after 13:30. Amalfi Duomo staircase — family climbing toward you from below, hard midday light creates strong shadow on the stairs, work with it. Ferry back 18:06.</div>
-          <div class="light-tag soft">🚢 X100VI on water · MP on land · Duomo stairs hard light 28mm</div>
+      <div class="photo-tip red-tip">
+        <div class="tip-title">Day 11 — Ferry · Boat tour · Amalfi · Confirmed</div>
+        <ul class="tip-bullets">
+          <li>08:40 Alicost ferry from Molo Manfredi — camera out, coast from the water is the frame</li>
+          <li>X100VI on the moving deck — one hand, water risk during the boat tour</li>
+          <li>MP back out on land in Amalfi after 13:30</li>
+          <li>Amalfi Duomo staircase — family climbing toward you from below, hard midday light, strong shadow on the stairs, work with it</li>
+        </ul>
+        <div class="tip-footer">
+          <span class="gear-badge">X100VI</span>
+          <span class="gear-badge">MP</span>
+          <span class="gear-badge">28mm</span>
+          <span class="light-tag soft">🚢 X100VI on water · MP on land · Duomo stairs hard light</span>
         </div>
       </div>
 
@@ -1307,21 +1424,32 @@
     </div>
     <div class="city-body">
 
-      <div class="photo-tip">
-        <div class="tip-dot" style="background:var(--black)"></div>
-        <div class="tip-inner">
-          <strong>Day 12 afternoon</strong> — Spaccanapoli
-          <div class="tip-note">The long straight street that cuts through the old city. Louder, grittier, more alive than anywhere else on this trip. Street food everywhere — fried pizza, sfogliatella. Let the kids eat everything. Don't try to control it. React. This is where your Tokyo instinct serves you most. Last major film opportunity of the trip — shoot freely.</div>
-          <div class="light-tag soft">🌆 Afternoon · street life peaks · reactive mode</div>
+      <div class="photo-tip black-tip">
+        <div class="tip-title">Day 12 — Spaccanapoli</div>
+        <ul class="tip-bullets">
+          <li>The long straight street cutting through the old city — louder, grittier, more alive than anywhere else on this trip</li>
+          <li>Street food everywhere, let the kids eat everything, don't control it. React.</li>
+          <li>This is where your Tokyo instinct serves you. Last major film opportunity — shoot freely.</li>
+        </ul>
+        <div class="tip-footer">
+          <span class="gear-badge">MP</span>
+          <span class="gear-badge">28mm</span>
+          <span class="light-tag soft">🌆 Afternoon · street life peaks · reactive mode</span>
         </div>
       </div>
 
-      <div class="photo-tip">
-        <div class="tip-dot" style="background:var(--black)"></div>
-        <div class="tip-inner">
-          <strong>Day 12 evening</strong> — Chiaia waterfront · Vesuvius across the bay
-          <div class="tip-note">Via Caracciolo at last light. The volcano silhouetted across the water. Family at the railing. This is a once-in-a-trip frame — last night in Italy, last meaningful film moment. Don't miss it. Then Neapolitan pizza dinner — the table, the food, the faces. Shoot through dinner.</div>
-          <div class="light-tag golden">🌅 Last light of the trip · Vesuvius · make it count</div>
+      <div class="photo-tip black-tip">
+        <div class="tip-title">Day 12 — Chiaia waterfront · Vesuvius across the bay</div>
+        <ul class="tip-bullets">
+          <li>Via Caracciolo at last light — Vesuvius silhouetted across the water</li>
+          <li>Family at the railing — once-in-a-trip frame, last night in Italy</li>
+          <li>Shoot through the pizza dinner — the table, the food, the faces</li>
+        </ul>
+        <div class="tip-footer">
+          <span class="gear-badge">M11P</span>
+          <span class="gear-badge">MP</span>
+          <span class="gear-badge">28mm</span>
+          <span class="light-tag golden">🌅 Last light of the trip · Vesuvius · final frames</span>
         </div>
       </div>
 
